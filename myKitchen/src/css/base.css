@@ -1,0 +1,9 @@
+.side-off {
+    left: -500px;
+    transition: left 0.3s ease;
+}
+
+.side-on {
+    left: 0;
+    transition: left 0.3s ease;
+}
