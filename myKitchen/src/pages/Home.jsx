@@ -1,14 +1,20 @@
 import React from 'react';
 import Header from '../layout/header';
 import Footer from '../layout/footer';
-
+import RezepteKachel from '../layout/RezeptKachel';
 function Home() {
     return (
         <>
             <Header />
-            <div>
-                <h1>Willkommen auf der Startseite</h1>
-                <p>Dies ist die Home-Seite der Anwendung.</p>
+            <div className='content'>
+                <div className='headline'>
+                    Favoriten
+                </div>
+                <div className='flex flex-row gap-8'>
+                    <RezepteKachel />
+                    <RezepteKachel />
+                    <RezepteKachel />
+                </div>
             </div>
             <Footer />
         </>

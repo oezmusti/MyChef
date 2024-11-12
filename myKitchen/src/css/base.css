@@ -1,3 +1,27 @@
+:root {
+    --color-head: #000;
+}
+
+.content {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.headline {
+    font-family: 'Work Sans';
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    color: var(--color-head);
+    margin-bottom: 5px;
+}
+
+.recepi-headline{
+    fon
+}
+
 .side-off {
     left: -500px;
     transition: left 0.3s ease;
@@ -6,4 +30,8 @@
 .side-on {
     left: 0;
     transition: left 0.3s ease;
+}
+
+.height-60{
+    height: 60%;
 }
