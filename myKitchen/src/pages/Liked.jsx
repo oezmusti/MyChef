@@ -2,17 +2,16 @@ import React from 'react';
 import Header from '../layout/header';
 import Footer from '../layout/footer';
 
-function Home() {
+function Liked() {
     return (
         <>
             <Header />
             <div className='content'>
-                <h1>Über Uns</h1>
-                <p>Hier erfahrt ihr mehr über diese Anwendung.</p>
+                <h1>Liked</h1>
             </div>
             <Footer />
         </>
     );
 }
 
-export default Home;
+export default Liked; 

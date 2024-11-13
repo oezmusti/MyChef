@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'Roboto': ['Roboto'],
+      'Work Sans': ['Work Sans'],
+    }
   },
   plugins: [],
 }

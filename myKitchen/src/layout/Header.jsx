@@ -43,7 +43,15 @@ function Header() {
                         <img className="px-8 pt-8" src="/icons/close.svg" alt="close" />
                     </div>
                     <div className="h-auto w-full mt-8">
-                        <a href="">
+                        <a href="/">
+                            <div className="w-full py-6 pl-8 hover:bg-[#52796F] transition-all duration-300 ease-in-out flex gap-4">
+                                <div className="h-[25px] w-[30px]">
+                                    <img className="h-[25px] w-auto" src="/icons/home.svg" alt="Hinzufügen Icon" />
+                                </div>
+                                <div>Home</div>
+                            </div>
+                        </a>
+                        <a href="/add-rezept">
                             <div className="w-full py-6 pl-8 hover:bg-[#52796F] transition-all duration-300 ease-in-out flex gap-4">
                                 <div className="h-[25px] w-[30px]">
                                     <img className="h-[25px] w-auto" src="/icons/icon-add.svg" alt="Hinzufügen Icon" />
@@ -51,7 +59,7 @@ function Header() {
                                 <div>Rezept Hinzufügen</div>
                             </div>
                         </a>
-                        <a href="">
+                        <a href="/rezepte">
                             <div className="w-full py-6 pl-8 hover:bg-[#52796F] transition-all duration-300 ease-in-out flex gap-4">
                                 <div className="h-[25px] w-[30px]">
                                     <img className="h-[25px] w-auto" src="/icons/icon-book.svg" alt="Meine Rezepte Icon" />
@@ -59,7 +67,7 @@ function Header() {
                                 <div>Meine Rezepte</div>
                             </div>
                         </a>
-                        <a href="">
+                        <a href="global-feed">
                             <div className="w-full py-6 pl-8 hover:bg-[#52796F] transition-all duration-300 ease-in-out flex gap-4">
                                 <div className="h-[25px] w-[30px]">
                                     <img className="h-[25px] w-auto" src="/icons/icon-world.svg" alt="Globaler Bereich Icon" />
@@ -67,7 +75,7 @@ function Header() {
                                 <div>Globaler Bereich</div>
                             </div>
                         </a>
-                        <a href="">
+                        <a href="liked">
                             <div className="w-full py-6 pl-8 hover:bg-[#52796F] transition-all duration-300 ease-in-out flex gap-4">
                                 <div className="h-[25px] w-[30px]">
                                     <img className="h-[25px] w-auto" src="/icons/icon-like.svg" alt="Geleikte Rezepte Icon" />

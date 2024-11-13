@@ -19,7 +19,11 @@
 }
 
 .recepi-headline{
-    fon
+    font-family: 'Roboto';
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    color: var(--color-head);
 }
 
 .side-off {
@@ -34,4 +38,8 @@
 
 .height-60{
     height: 60%;
+}
+
+.heart path {
+    transition: fill 0.4s ease-in-out;
 }
