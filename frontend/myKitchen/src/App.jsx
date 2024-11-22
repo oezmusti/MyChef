@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Rezepte from './pages/Rezepte';
 import AddRezept from './pages/AddRezept';
 import GlobalFeed from './pages/GlobalFeed';
-
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
         <Route path="/rezepte" element={<Rezepte />} />
         <Route path="/add-rezept" element={<AddRezept />} />
         <Route path='/global-feed' element={<GlobalFeed />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
     </Router>
   );
