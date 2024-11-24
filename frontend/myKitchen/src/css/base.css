@@ -43,3 +43,41 @@
 .heart path {
     transition: fill 0.4s ease-in-out;
 }
+
+/*Button*/
+.button {
+    /* Hintergrundfarbe */
+    
+    /* Textfarbe */
+    color: #ffffff; /* Tailwind: text-white */
+    
+    /* Abstände innen (Padding) */
+    padding: 0.5rem 1rem; /* Tailwind: px-4 py-2 */
+    
+    /* Text-Größe und Gewicht */
+    font-size: 0.875rem; /* Tailwind: text-sm */
+    font-weight: 500; /* Tailwind: font-medium */
+    
+    /* Rahmenradius (Ecken abrunden) */
+    border-radius: 0.375rem; /* Tailwind: rounded-md */
+    
+    /* Übergänge */
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    
+    /* Cursor auf Hover */
+    cursor: pointer;
+    
+    /* Display und Alignment */
+    display: inline-block;
+    text-align: center;
+  
+    /* Entferne standardmäßige Rahmen */
+    border: none;
+    outline: none;
+  }
+  
+  /* Fokus-Effekt */
+  .button:focus {
+    outline-offset: 2px;
+  }
+  
