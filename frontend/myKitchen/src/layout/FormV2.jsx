@@ -215,6 +215,14 @@ function FormV2() {
                                                 </div>
                                             </label>
                                         </li>
+                                        <li>
+                                            <input type="checkbox" id="low-carb" value="low-carb" className="hidden peer" onChange={handleCategoryChange} />
+                                            <label htmlFor="low-carb" className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700">
+                                                <div className="block text-sm mx-auto">
+                                                    Low-Carb
+                                                </div>
+                                            </label>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

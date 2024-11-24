@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../layout/header';
 import Footer from '../layout/footer';
 
-function Register() {
+function LogIn() {
     return (
         <>
             <div className='absolute -z-20 top-0 left-0'>
@@ -17,14 +17,6 @@ function Register() {
                             </h1>
                             <form className="space-y-4 md:space-y-6" action="#">
                                 <div>
-                                    <label for="name" className="block mb-2 text-sm font-medium text-gray-900">Name</label>
-                                    <input type="email" name="name" id="name" className="border border-gold-500 text-gray-900 rounded-lg block w-full p-2.5" required="" />
-                                </div>
-                                <div>
-                                    <label for="user_name" className="block mb-2 text-sm font-medium text-gray-900">Benutzername</label>
-                                    <input type="text" name="user_name" id="user_name" className="border border-gold-500 text-gray-900 rounded-lg block w-full p-2.5" required="" />
-                                </div>
-                                <div>
                                     <label for="email" className="block mb-2 text-sm font-medium text-gray-900">E-Mail</label>
                                     <input type="email" name="email" id="email" className="border border-gold-500 text-gray-900 rounded-lg block w-full p-2.5" placeholder="name@company.com" required="" />
                                 </div>
@@ -34,7 +26,7 @@ function Register() {
                                 </div>
                                 <button type="submit" className="w-full text-white bg-gold-300 hover:bg-gold-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
                                 <p className="text-sm font-light text-gray-500">
-                                    Du hast schon ein Account? <a href="/register" className="font-medium text-gold-300 hover:underline">jetzt Anmelden</a>
+                                    Noch kein Account <a href="/register" className="font-medium text-gold-300 hover:underline">jetzt Registrieren</a>
                                 </p>
                             </form>
                         </div>
@@ -45,4 +37,4 @@ function Register() {
     );
 }
 
-export default Register; 
+export default LogIn; 

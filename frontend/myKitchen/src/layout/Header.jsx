@@ -38,12 +38,12 @@ function Header() {
 
                     </div>
                     <div className="flex items-center gap-3 h-full">
-                        <a href='' className='text-gold-500 '>
+                        <a href='/register' className='text-gold-500 '>
                             Sign Up
                         </a>
-                        <button type="button" className="border border-spacing-2 border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-[#FFF] px-5 py-2 rounded-full">
+                        <a href='/login' className="border border-spacing-2 border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-[#FFF] px-5 py-2 rounded-full">
                             Login
-                        </button>
+                        </a>
                     </div>
                 </nav>
 
