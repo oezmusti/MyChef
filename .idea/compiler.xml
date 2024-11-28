@@ -14,5 +14,8 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="myRezept-Backend" options="-parameters" />
     </option>
+    <bytecodeTargetLevel>
+      <module name="myRezept-Backend" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
