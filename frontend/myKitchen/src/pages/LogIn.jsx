@@ -15,7 +15,7 @@ function LogIn() {
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gold-400 md:text-2xl">
                                 Log IN
                             </h1>
-                            <form className="space-y-4 md:space-y-6" action="#">
+                            <form className="space-y-4 md:space-y-6" action="/api/auth/login">
                                 <div>
                                     <label for="email" className="block mb-2 text-sm font-medium text-gray-900">E-Mail</label>
                                     <input type="email" name="email" id="email" className="border border-gold-500 text-gray-900 rounded-lg block w-full p-2.5" placeholder="name@company.com" required="" />
