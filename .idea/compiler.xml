@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="testreact" />
         <module name="myRezept-Backend" />
       </profile>
     </annotationProcessing>
@@ -14,8 +15,5 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="myRezept-Backend" options="-parameters" />
     </option>
-    <bytecodeTargetLevel>
-      <module name="myRezept-Backend" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
