@@ -3,10 +3,11 @@ package com.example.myRezept_Backend.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "user") // Hier sicherstellen, dass der Name "user" verwendet wird
+@Document(collection = "users") // Hier sicherstellen, dass der Name "user" verwendet wird
 public class User {
     @Id
     private String id;
+    private String name;
     private String username;
     private String email;
     private String password;
@@ -16,6 +17,10 @@ public class User {
 
     public String getId() {
         return id;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public String getUsername() {
@@ -36,6 +41,10 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 
     public void setUsername(String username) {
