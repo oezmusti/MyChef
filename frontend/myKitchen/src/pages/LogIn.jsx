@@ -1,8 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../layout/header';
 import Footer from '../layout/footer';
 
 function LogIn() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+
+    const handleLogin = async (event) => {
+        event.preventDefault(); // Verhindert, dass die Seite neu geladen wird
+
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setSuccessMessage('Login erfolgreich!'); // Zeige Erfolgsnachricht
+                setErrorMessage(''); // Lösche Fehlernachricht
+                console.log('Benutzer-Token:', data.token); // Bearbeite das Token (z.B. speichere es im LocalStorage)
+            } else {
+                const errorData = await response.json();
+                setErrorMessage(errorData.message || 'Login fehlgeschlagen!');
+            }
+        } catch (error) {
+            console.error('Login-Fehler:', error);
+            setErrorMessage('Serverfehler. Bitte später erneut versuchen.');
+        }
+    };
+
     return (
         <>
             <div className='absolute -z-20 top-0 left-0'>
@@ -15,18 +47,46 @@ function LogIn() {
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gold-400 md:text-2xl">
                                 Log IN
                             </h1>
-                            <form className="space-y-4 md:space-y-6" action="/api/auth/login">
+                            <form className="space-y-4 md:space-y-6" onSubmit={handleLogin}>
                                 <div>
-                                    <label for="email" className="block mb-2 text-sm font-medium text-gray-900">E-Mail</label>
-                                    <input type="email" name="email" id="email" className="border border-gold-500 text-gray-900 rounded-lg block w-full p-2.5" placeholder="name@company.com" required="" />
+                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">E-Mail</label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        className="border border-gold-500 text-gray-900 rounded-lg block w-full p-2.5"
+                                        placeholder="name@company.com"
+                                        required
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)} // Aktualisiert den Zustand
+                                    />
                                 </div>
                                 <div>
-                                    <label for="password" className="block mb-2 text-sm font-medium text-gray-900">Passwort</label>
-                                    <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gold-500 rounded-lg block w-full p-2.5" required="" />
+                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Passwort</label>
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        id="password"
+                                        placeholder="••••••••"
+                                        className="bg-gray-50 border border-gold-500 rounded-lg block w-full p-2.5"
+                                        required
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)} // Aktualisiert den Zustand
+                                    />
                                 </div>
-                                <button type="submit" className="w-full text-white bg-gold-300 hover:bg-gold-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                                {errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
+                                {successMessage && <p className="text-sm text-green-500">{successMessage}</p>}
+                                <button
+                                    type="submit"
+                                    className="w-full text-white bg-gold-300 hover:bg-gold-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                >
+                                    Sign in
+                                </button>
                                 <p className="text-sm font-light text-gray-500">
-                                    Noch kein Account <a href="/register" className="font-medium text-gold-300 hover:underline">jetzt Registrieren</a>
+                                    Noch kein Account?{' '}
+                                    <a href="/register" className="font-medium text-gold-300 hover:underline">
+                                        Jetzt registrieren
+                                    </a>
                                 </p>
                             </form>
                         </div>
@@ -37,4 +97,4 @@ function LogIn() {
     );
 }
 
-export default LogIn; 
+export default LogIn;
