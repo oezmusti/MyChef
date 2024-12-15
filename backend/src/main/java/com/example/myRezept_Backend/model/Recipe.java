@@ -3,7 +3,7 @@ package com.example.myRezept_Backend.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "recipes")
+@Document(collection = "recipe")
 public class Recipe {
 
     @Id
