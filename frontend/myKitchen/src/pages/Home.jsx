@@ -2,14 +2,14 @@ import React from 'react';
 import Header from '../layout/header';
 import Footer from '../layout/footer';
 import RezepteKachel from '../layout/RezeptKachel';
-import Suche from '../komponente/Suche';
+//import Suche from '../komponente/Suche';
 function Home() {
     return (
         <>
             <Header />
             <div className='content'>
                 <div>
-                    <Suche />
+                    {/* <Suche /> */}
                 </div>
                 <div className='headline'>
                     Favoriten
