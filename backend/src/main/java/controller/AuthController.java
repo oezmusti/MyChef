@@ -1,3 +1,5 @@
+package controller;
+
 import com.example.myRezept_Backend.model.User;
 import com.example.myRezept_Backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
