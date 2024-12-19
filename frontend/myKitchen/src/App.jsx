@@ -4,9 +4,20 @@ import Home from './pages/Home';
 import Rezepte from './pages/Rezepte';
 import AddRezept from './pages/AddRezept';
 import GlobalFeed from './pages/GlobalFeed';
+import RezeptDetail from './pages/RezeptDetail'; // Verlinkung zu RezeptDetail
 
 
 function App() {
+  
+  const rezept = {
+    name: 'Hamburger',
+    time: '30',
+    img: '/uploads/hamburger.jpg',
+    kategori: 'Vollkost',
+    url: '/user/hamburger',
+    isliked: 'false',
+  };
+
   return (
     <Router>
       {/* <nav>
@@ -17,6 +28,7 @@ function App() {
         <Route path="/rezepte" element={<Rezepte />} />
         <Route path="/add-rezept" element={<AddRezept />} />
         <Route path='/global-feed' element={<GlobalFeed />} />
+        <Route path='/details' element={<RezeptDetail />} /* Verlinkung zu RezeptDetail */ /> 
       </Routes>
     </Router>
   );
