@@ -43,3 +43,23 @@
 .heart path {
     transition: fill 0.4s ease-in-out;
 }
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Zwei gleich große Spalten */
+    gap: 10px;
+    margin-bottom: 10px;
+    /*justify-content: center;
+    grid-column: 1 / 3;
+    background: #19cc6a;
+    max-width: 50%;
+    height: auto;*/
+}
+
+.box {
+    padding: 10px;
+    background-color: lightgreen;
+    text-align: center;
+
+}
+
