@@ -7,6 +7,7 @@ import GlobalFeed from './pages/GlobalFeed';
 import RezeptDetail from './pages/RezeptDetail'; // Verlinkung zu RezeptDetail
 
 import Register from './pages/Register';
+import LogIn from './pages/LogIn';
 
 function App() {
   
@@ -31,6 +32,7 @@ function App() {
         <Route path='/global-feed' element={<GlobalFeed />} />
         <Route path='/details' element={<RezeptDetail />} /* Verlinkung zu RezeptDetail */ /> 
         <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<LogIn />} />
       </Routes>
     </Router>
   );

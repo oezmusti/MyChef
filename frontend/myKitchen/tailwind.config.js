@@ -24,6 +24,8 @@ export default {
         '900': '#4e4135',
         '950': '#2c231c',
       },
+      'white': '#FFF',
+      'black': '#000',
     },
   },
   plugins: [],
