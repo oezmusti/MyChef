@@ -18,7 +18,7 @@ function RezeptDetail() {
                             Hamburger
                         </div>
                         <p> Ich bin eine Beschreibung des Gerichts. Hier muss noch die Zubereitungszeit rein und aus welcher Kategorie das Gericht ist.
-                            Hier fehlt noch, dass man das Rezept favoritisieren kann.
+                            Hier fehlt noch, dass man das Rezept favoritisieren kann. Alles muss noch dynamisch gemacht werden und an die Datenbank angeschlossen werden.
                         </p>
                     </div>
                 </div>
