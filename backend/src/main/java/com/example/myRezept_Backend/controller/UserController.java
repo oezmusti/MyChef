@@ -9,20 +9,26 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "*") // Füge dies hinzu für CORS
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @GetMapping  // Ändere dies von "/all" zu nur @GetMapping
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 
     @PostMapping("/register")
     public User registerUser(@RequestBody User user) {
         return userRepository.save(user); // Benutzer wird gespeichert
     }
 
-    @GetMapping("/all")
-    public List<User> getAllUsers() {
-        return userRepository.findAll(); // Alle Benutzer zurückgeben
-    }
+    //@GetMapping("/all")
+    //public List<User> getAllUsers() {
+       // return userRepository.findAll(); // Alle Benutzer zurückgeben
+    //}
 
     @GetMapping("/{username}")
     public User getUserByUsername(@PathVariable String username) {

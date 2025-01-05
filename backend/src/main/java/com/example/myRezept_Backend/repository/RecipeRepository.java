@@ -2,6 +2,7 @@ package com.example.myRezept_Backend.repository;
 
 import com.example.myRezept_Backend.model.Recipe;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
 
 /**
@@ -12,5 +13,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 // * @param <Recipe> Typ der Entität, die vom Repository verwaltet wird
 // * @param <String> Typ des Primärschlüssels (ID) der Entität
  */
-public interface RecipeRepository extends MongoRepository<Recipe, String> {
+@Repository
+public interface RecipeRepository extends MongoRepository<Recipe, Object> {
 }
