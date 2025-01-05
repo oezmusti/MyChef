@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../css/base.css';
+import Filter from './Filter';
 
 function Header() {
     // State-Variable für das Menü, ob es geöffnet ist oder nicht
@@ -35,6 +36,8 @@ function Header() {
                                 <button type="submit" className="text-[#FFF] absolute end-2.5 bottom-1.5 bg-gold-200 hover:bg-gold-300 font-medium rounded-lg text-sm px-2 py-1">Search</button>
                             </div>
                         </form>
+
+                        <Filter />
 
                     </div>
                     <div className="flex items-center gap-3 h-full">
@@ -99,7 +102,7 @@ function Header() {
                         </a>
                     </div>
                 </div>
-            </header>
+            </header >
         </>
     );
 }

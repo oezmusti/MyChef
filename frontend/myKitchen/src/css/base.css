@@ -1,3 +1,7 @@
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
 :root {
     --color-head: #000;
 }
@@ -5,12 +9,15 @@
 .content {
     padding-left: 40px;
     padding-right: 40px;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
 .headline {
-    font-family: 'Work Sans';
+    font-family: 'Work-Sans';
     font-size: 35px;
     font-style: normal;
     font-weight: 700;
@@ -100,4 +107,3 @@
     text-align: center;
 
 }
-

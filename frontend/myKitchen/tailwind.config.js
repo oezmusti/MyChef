@@ -8,7 +8,7 @@ export default {
     extend: {},
     fontFamily: {
       'Roboto': ['Roboto'],
-      'Work Sans': ['Work Sans'],
+      'Work-Sans': ['Work-Sans'],
     },
     colors: {
       'gold': {

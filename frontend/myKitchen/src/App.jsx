@@ -5,12 +5,13 @@ import Rezepte from './pages/Rezepte';
 import AddRezept from './pages/AddRezept';
 import GlobalFeed from './pages/GlobalFeed';
 import RezeptDetail from './pages/RezeptDetail'; // Verlinkung zu RezeptDetail
+import Search from './pages/Search';
 
 import Register from './pages/Register';
 import LogIn from './pages/LogIn';
 
 function App() {
-  
+
   const rezept = {
     name: 'Hamburger',
     time: '30',
@@ -30,9 +31,10 @@ function App() {
         <Route path="/rezepte" element={<Rezepte />} />
         <Route path="/add-rezept" element={<AddRezept />} />
         <Route path='/global-feed' element={<GlobalFeed />} />
-        <Route path='/details' element={<RezeptDetail />} /* Verlinkung zu RezeptDetail */ /> 
+        <Route path='/details' element={<RezeptDetail />} /* Verlinkung zu RezeptDetail */ />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<LogIn />} />
+        <Route path='/serch' element={<Search />} />
       </Routes>
     </Router>
   );
