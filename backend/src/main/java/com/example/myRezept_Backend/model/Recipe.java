@@ -20,7 +20,10 @@ public class Recipe {
     public Recipe() {}
 
     // Konstruktor mit params
-    public Recipe(String name, String description) {
+
+
+    public Recipe(String id, String name, String description, String lvl, String mealtyp, String time, String ingredients, String steps) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.lvl = lvl;
@@ -55,4 +58,44 @@ public class Recipe {
         this.description = description;
     }
 
+    //lvl
+    public String getLvl() {
+        return lvl;
+    }
+
+    public void setLvl(String lvl) {
+        this.lvl = lvl;
+    }
+
+    public String getMealtyp() {
+        return mealtyp;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public String getSteps() {
+        return steps;
+    }
+
+    public void setMealtyp(String mealtyp) {
+        this.mealtyp = mealtyp;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public void setSteps(String steps) {
+        this.steps = steps;
+    }
 }
