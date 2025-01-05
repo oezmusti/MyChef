@@ -3,8 +3,6 @@ package com.example.myRezept_Backend.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
-
 @Document(collection = "recipe")
 public class Recipe {
 
@@ -15,15 +13,14 @@ public class Recipe {
     private String lvl;
     private String mealtyp;
     private String time;
-    private List<String> ingredients;
-    private List<String> steps;
+    private String ingredients;
+    private String steps;
 
     // Standard-Konstruktor
     public Recipe() {}
 
     // Konstruktor mit params
-    public Recipe(String id, String name, String description, String lvl, String mealtyp, String time, List<String> ingredients, List<String> steps) {
-        this.id = id;
+    public Recipe(String name, String description) {
         this.name = name;
         this.description = description;
         this.lvl = lvl;
@@ -58,43 +55,4 @@ public class Recipe {
         this.description = description;
     }
 
-    // Level
-    public String getLvl() { return lvl; }
-    public void setLvl(String lvl) {
-        this.lvl = lvl;
-    }
-
-    // Mealtyp
-    public String getMealtyp() {
-        return mealtyp;
-    }
-    public void setMealtyp(String mealtyp) {
-        this.mealtyp = mealtyp;
-    }
-
-    // Time
-    public String getTime() {
-        return time;
-    }
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    // Ingredients
-    public List<String> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<String> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    //Steps
-    public List<String> getSteps() {
-        return steps;
-    }
-
-    public void setSteps(List<String> steps) {
-        this.steps = steps;
-    }
 }
