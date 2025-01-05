@@ -11,7 +11,19 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private String role = "USER"; // Standardrolle
+    private String role = "USER";
+
+    //Konstruktor
+
+
+    public User(String id, String name, String username, String email, String password, String role) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     // Getter und Setter
     public String getId() {

@@ -1,3 +1,4 @@
+/*
 package controller;
 
 import com.example.myRezept_Backend.model.User;
@@ -53,3 +54,4 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 }
+     */
