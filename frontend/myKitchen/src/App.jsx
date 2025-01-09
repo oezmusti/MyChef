@@ -9,6 +9,7 @@ import Search from './pages/Search';
 
 import Register from './pages/Register';
 import LogIn from './pages/LogIn';
+import EditRezept from './pages/EditRezept';
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<LogIn />} />
         <Route path='/serch' element={<Search />} />
+        <Route path='/edit-rezept' element={<EditRezept />} /* Verlinkung um Rezepte zu bearbeiten */ />
       </Routes>
     </Router>
   );
