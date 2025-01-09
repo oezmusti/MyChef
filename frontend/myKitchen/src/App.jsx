@@ -6,20 +6,12 @@ import AddRezept from './pages/AddRezept';
 import GlobalFeed from './pages/GlobalFeed';
 import RezeptDetail from './pages/RezeptDetail'; // Verlinkung zu RezeptDetail
 import Search from './pages/Search';
+import UserSettings from './pages/UserSettings';
 
 import Register from './pages/Register';
 import LogIn from './pages/LogIn';
 
 function App() {
-
-  const rezept = {
-    name: 'Hamburger',
-    time: '30',
-    img: '/uploads/hamburger.jpg',
-    kategori: 'Vollkost',
-    url: '/user/hamburger',
-    isliked: 'false',
-  };
 
   return (
     <Router>
@@ -35,6 +27,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<LogIn />} />
         <Route path='/serch' element={<Search />} />
+        <Route path='/Settings' element={<UserSettings />} />
       </Routes>
     </Router>
   );

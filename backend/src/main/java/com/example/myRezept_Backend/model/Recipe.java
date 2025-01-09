@@ -3,6 +3,8 @@ package com.example.myRezept_Backend.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document(collection = "recipe")
 public class Recipe {
 
@@ -13,24 +15,32 @@ public class Recipe {
     private String lvl;
     private String mealtyp;
     private String time;
+
+    // Verwende eine List<String> anstelle von String für Kategorien
+    private List<String> categories;
+
+    private boolean publics;
     private String ingredients;
     private String steps;
+
+    private String imageUrl;
 
     // Standard-Konstruktor
     public Recipe() {}
 
     // Konstruktor mit params
-
-
-    public Recipe(String id, String name, String description, String lvl, String mealtyp, String time, String ingredients, String steps) {
+    public Recipe(String id, String name, String description, String lvl, String mealtyp, String time, List<String> categories, boolean publics, String ingredients, String steps, String imageUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.lvl = lvl;
         this.mealtyp = mealtyp;
         this.time = time;
+        this.categories = categories;
+        this.publics = publics;
         this.ingredients = ingredients;
         this.steps = steps;
+        this.imageUrl = imageUrl;
     }
 
     // Getter und Setter
@@ -83,6 +93,10 @@ public class Recipe {
         return steps;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
     public void setMealtyp(String mealtyp) {
         this.mealtyp = mealtyp;
     }
@@ -97,5 +111,27 @@ public class Recipe {
 
     public void setSteps(String steps) {
         this.steps = steps;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    // Kategorien Getter und Setter
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
+    }
+
+    // Publikumsstatus Getter und Setter
+    public boolean isPublics() {
+        return publics;
+    }
+
+    public void setPublics(boolean publics) {
+        this.publics = publics;
     }
 }

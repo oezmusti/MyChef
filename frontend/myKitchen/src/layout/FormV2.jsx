@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/base.css';
 
 function FormV2() {
+
+    //Navigierung nach dem Absenden 
+    const navigate = useNavigate();
+
     // State to track the current step
     const [currentStep, setCurrentStep] = useState(1);
 
@@ -11,10 +16,10 @@ function FormV2() {
         name: '',
         description: '',
         lvl: '',
-        mealType: '',
+        mealtyp: '',
         time: '',
         categories: [],
-        public: false,
+        publics: false,
         ingredients: '',
         steps: ''
     });
@@ -43,19 +48,20 @@ function FormV2() {
     // Handle checkbox change for categories
     const handleCategoryChange = (e) => {
         const { value, checked } = e.target;
-        if (checked) {
-            setFormData({ ...formData, categories: [...formData.categories, value] });
-        } else {
-            setFormData({
-                ...formData,
-                categories: formData.categories.filter((category) => category !== value)
-            });
-        }
+
+        // Wenn die Checkbox ausgewählt wurde, füge den Wert zum categories-Array hinzu,
+        // andernfalls entferne ihn
+        setFormData(prevFormData => {
+            const newCategories = checked
+                ? [...prevFormData.categories, value]
+                : prevFormData.categories.filter(category => category !== value);
+            return { ...prevFormData, categories: newCategories };
+        });
     };
 
     // Handle public toggle
     const handlePublicToggle = (e) => {
-        setFormData({ ...formData, public: e.target.checked });
+        setFormData({ ...formData, publics: e.target.checked });
     };
 
     // Function to go to the next step
@@ -71,8 +77,47 @@ function FormV2() {
     // Function to handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form data submitted:', formData);
-        // Hier kannst du die Daten weiter verarbeiten, z.B. per POST Request an den Server schicken
+
+        // Erstellen eines FormData Objekts für das Bild
+        const formDataToSend = new FormData();
+
+        // Bilddatei hinzufügen (falls vorhanden)
+        if (formData.image) {
+            formDataToSend.append('image', formData.image);
+        }
+
+        // Restliche Formulardaten als JSON hinzufügen
+        formDataToSend.append('data', JSON.stringify({
+            name: formData.name,
+            description: formData.description,
+            lvl: formData.lvl,
+            mealtyp: formData.mealtyp,
+            time: formData.time,
+            categories: formData.categories,
+            publics: formData.publics,
+            ingredients: formData.ingredients,
+            steps: formData.steps
+        }));
+
+        console.log('Gesendete Daten:' + formDataToSend)
+
+        // POST-Request an den Backend-Server
+        fetch('http://localhost:8080/api/recipes', {
+            method: 'POST',
+            // headers: {
+            //     'Content-Type': 'application/json', 
+            // },
+            body: formDataToSend
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Recipe saved:', data);
+                navigate('/'); //Auf root zurück navigieren, wenn erfolgreich 
+                // Weitere Aktionen nach dem Absenden, wie z.B. eine Erfolgsnachricht anzeigen
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     };
 
     // Render the current step
@@ -149,12 +194,12 @@ function FormV2() {
 
                                 {/* Tagesmahlzeiten */}
                                 <div className='flex flex-col mb-4'>
-                                    <label className='pb-2' htmlFor="mealType"> Tagesmahlzeiten </label>
+                                    <label className='pb-2' htmlFor="mealtyp"> Tagesmahlzeiten </label>
                                     <select
                                         className='block border border-gold-500 focus:border focus:border-gold-700 rounded-md h-8'
-                                        id="mealType"
-                                        name='mealType'
-                                        value={formData.mealType}
+                                        id="mealtyp"
+                                        name='mealtyp'
+                                        value={formData.mealtyp}
                                         onChange={handleInputChange}
                                     >
                                         <option value="none"></option>
@@ -185,7 +230,7 @@ function FormV2() {
                                     <ul className="grid w-full gap-6 md:grid-cols-3">
                                         <li>
                                             <input type="checkbox" id="vegan" value="vegan" className="hidden peer" onChange={handleCategoryChange} />
-                                            <label htmlFor="vegan" className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700">
+                                            <label htmlFor="vegan" className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700 peer-checked:bg-gold-700 peer-checked:text-white">
                                                 <div className="block text-sm mx-auto">
                                                     Vegan
                                                 </div>
@@ -193,7 +238,7 @@ function FormV2() {
                                         </li>
                                         <li>
                                             <input type="checkbox" id="vegetarisch" value="vegetarisch" className="hidden peer" onChange={handleCategoryChange} />
-                                            <label htmlFor="vegetarisch" className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700">
+                                            <label htmlFor="vegetarisch" className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700 peer-checked:bg-gold-700 peer-checked:text-white">
                                                 <div className="block text-sm mx-auto">
                                                     Vegetarisch
                                                 </div>
@@ -201,7 +246,7 @@ function FormV2() {
                                         </li>
                                         <li>
                                             <input type="checkbox" id="Vollkost" value="Vollkost" className="hidden peer" onChange={handleCategoryChange} />
-                                            <label htmlFor="Vollkost" className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700">
+                                            <label htmlFor="Vollkost" className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700 peer-checked:bg-gold-700 peer-checked:text-white">
                                                 <div className="block text-sm mx-auto">
                                                     Vollkost
                                                 </div>
@@ -209,7 +254,7 @@ function FormV2() {
                                         </li>
                                         <li>
                                             <input type="checkbox" id="glutenfrei" value="glutenfrei" className="hidden peer" onChange={handleCategoryChange} />
-                                            <label htmlFor="glutenfrei" className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700">
+                                            <label htmlFor="glutenfrei" className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700 peer-checked:bg-gold-700 peer-checked:text-white">
                                                 <div className="block text-sm mx-auto">
                                                     Gluten-frei
                                                 </div>
@@ -217,7 +262,7 @@ function FormV2() {
                                         </li>
                                         <li>
                                             <input type="checkbox" id="low-carb" value="low-carb" className="hidden peer" onChange={handleCategoryChange} />
-                                            <label htmlFor="low-carb" className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700">
+                                            <label htmlFor="low-carb" className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700 peer-checked:bg-gold-700 peer-checked:text-white">
                                                 <div className="block text-sm mx-auto">
                                                     Low-Carb
                                                 </div>
@@ -226,12 +271,13 @@ function FormV2() {
                                     </ul>
                                 </div>
                             </div>
+
                             {/* Öffentliches Rezept */}
                             <div className='mb-4'>
-                                <label class="items-center me-5 cursor-pointer">
-                                    <label className='' htmlFor="public">Auf öffentlich stellen</label>
-                                    <input type="checkbox" value="public" id='public' name='public' checked={formData.public} onChange={handlePublicToggle} className="sr-only peer" />
-                                    <div class="mt-3 peer-checked:bg-gold-400 dark:bg-gold-200 peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white rtl:peer-checked:after:-translate-x-full"></div>
+                                <label className="items-center me-5 cursor-pointer">
+                                    <label className='' htmlFor="publics">Auf öffentlich stellen</label>
+                                    <input type="checkbox" value="publics" id='publics' name='publics' checked={formData.publics} onChange={handlePublicToggle} className="sr-only peer" />
+                                    <div className="mt-3 peer-checked:bg-gold-400 dark:bg-gold-200 peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white rtl:peer-checked:after:-translate-x-full"></div>
                                 </label>
                             </div>
                         </div>

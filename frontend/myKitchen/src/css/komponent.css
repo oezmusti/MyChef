@@ -91,14 +91,16 @@
     position: absolute;
     z-index: 30;
     width: 300px;
-    height: 600px;
+    height: auto;
     top: 50px;
     left: -50%;
-    background-color: aqua;
+    background-color: #fff;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
 }
 
 /* Slider */

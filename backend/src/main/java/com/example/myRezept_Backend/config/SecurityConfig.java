@@ -1,3 +1,4 @@
+
 package com.example.myRezept_Backend.config;
 
 import org.springframework.context.annotation.Bean;
@@ -24,6 +25,8 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/recipes").permitAll() // Zugriff auf diesen Endpunkt erlauben
                         .requestMatchers("/api/users").permitAll()
+                        .requestMatchers("/**").permitAll()
+                        .requestMatchers("/api/auth/register").permitAll()
                         .anyRequest().authenticated() // Alle anderen Endpunkte erfordern Authentifizierung
                 );
         return http.build();

@@ -13,7 +13,7 @@ function Register() {
 
 
         try {
-            const response = await fetch('/api/auth/register', {
+            const response = await fetch('http://localhost:8080/api/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,6 +32,8 @@ function Register() {
                 setErrorMessage('');
                 console.log('Erfolgreiche Registrierung:', data);
             } else {
+                console.error('Serverantwort:', errorData);
+                setErrorMessage('Registrierung fehlgeschlagen!');
                 const errorData = await response.json();
                 setErrorMessage(errorData.message || 'Registrierung fehlgeschlagen!');
                 setSuccessMessage('');
