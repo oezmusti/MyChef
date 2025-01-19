@@ -5,6 +5,7 @@ import com.example.myRezept_Backend.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.bson.types.ObjectId;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,6 +56,10 @@ public class RecipeService {
                 System.err.println("Fehler beim Erstellen des Uploads-Ordners.");
             }
         }
+    }
+
+    public Recipe findById(ObjectId  id) {
+        return recipeRepository.findById(id).orElse(null);
     }
 
 }

@@ -23,47 +23,30 @@ function UserSettings() {
     return (
         <>
             <Header /> {/* Optional: Header-Komponente */}
-            <div className="recipes-container">
-                <h1>Rezepte</h1>
-                {recipes.length === 0 ? (
-                    <p>Keine Rezepte verfügbar.</p>
-                ) : (
-                    recipes.map((recipe) => (
-                        <div key={recipe.id} className="recipe-card">
-                            <h2>{recipe.name}</h2>
-                            <p><strong>Beschreibung:</strong> {recipe.description}</p>
-                            <p><strong>Schwierigkeitsgrad:</strong> {recipe.lvl}</p>
-                            <p><strong>Mahlzeittyp:</strong> {recipe.mealtyp}</p>
-                            <p><strong>Zubereitungszeit:</strong> {recipe.time} Minuten</p>
-                            <h3>Zutaten:</h3>
-                            <ul>
-                                {recipe.ingredients.split(', ').map((ingredient, index) => (
-                                    <li key={index}>{ingredient}</li>
-                                ))}
-                            </ul>
-                            <h3>Schritte:</h3>
-                            <ol>
-                                {recipe.steps.split(', ').map((step, index) => (
-                                    <li key={index}>{step}</li>
-                                ))}
-                            </ol>
-                            <img
-                                src={`/${recipe.id}`} // Bild-URL anpassen
-                                alt={`${recipe.name} Bild`}
-                                className="recipe-image"
-                            />
-
-                            <RezepteKacheltext
-                                img={recipe.imageUrl}
-                                name={recipe.name}
-                                time={recipe.time}
-                                category={recipe.ingredients.split(', ').map((category, index) => (
-                                    <li key={index}>{category}</li>
-                                ))}
-                            />
-                        </div>
-                    ))
-                )}
+            <div className='content'>
+                <div className='headline'>
+                    Meine Rezepte
+                </div>
+                <div className='recipe-conainer'>
+                    <div className='recipe-conainer-inner'>
+                        {recipes.length === 0 ? (
+                            <p>Keine Rezepte verfügbar.</p>
+                        ) : (
+                            recipes.map((recipe) => (
+                                <RezepteKacheltext
+                                    key={recipe.id}
+                                    id={recipe.id}
+                                    img={recipe.imageUrl}
+                                    name={recipe.name}
+                                    time={recipe.time}
+                                    category={recipe.ingredients.split(', ').map((category, index) => (
+                                        <li key={index}>{category}</li>
+                                    ))}
+                                />
+                            ))
+                        )}
+                    </div>
+                </div>
             </div>
             <Footer />
         </>

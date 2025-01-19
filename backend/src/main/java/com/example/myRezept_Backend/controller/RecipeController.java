@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.bson.types.ObjectId;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,6 +25,28 @@ public class RecipeController {
     public ResponseEntity<List<Recipe>> allRecipe() {
         return new ResponseEntity<>(recipeService.allRecipes(), HttpStatus.OK);
     }
+
+    //Get Methiode um das Rezept mit der entsprechenden ID abzurufen
+    @GetMapping("/{id}")
+    public ResponseEntity<Recipe> getRecipeById(@PathVariable String id) {
+        try {
+            // Konvertiere die String-ID in einen ObjectId
+            ObjectId objectId = new ObjectId(id);
+
+            // Rezept aus dem Service abrufen
+            Recipe recipe = recipeService.findById(objectId);
+
+            if (recipe != null) {
+                return new ResponseEntity<>(recipe, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (IllegalArgumentException e) {
+            // Falls die ID keine gültige ObjectId ist
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
     // POST-Methode: Neues Rezept erstellen
     @PostMapping

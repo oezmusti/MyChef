@@ -1,24 +1,24 @@
 /* Hero Slider */
-.hero-container{
+.hero-container {
     width: 100%;
     height: 80vh;
     position: relative;
 }
 
-.hero-background-container{
+.hero-background-container {
     width: 100%;
     height: 100%;
     position: absolute;
     z-index: 21;
 }
 
-.hero-background{
+.hero-background {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.hero-overlay{
+.hero-overlay {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -26,7 +26,7 @@
     z-index: 22;
 }
 
-.hero-text-container{
+.hero-text-container {
     position: absolute;
     z-index: 23;
     max-width: 800px;
@@ -34,18 +34,18 @@
     color: white;
 }
 
-.hero-headline{
+.hero-headline {
     font-size: 45px;
     font-family: 'Work-SaNS';
     line-height: 100px;
 }
 
-.hero-description{
+.hero-description {
     font-size: 20px;
     font-family: 'Roboto';
 }
 
-.hero-recepi-info{
+.hero-recepi-info {
     padding-top: 10px;
     display: flex;
     flex-direction: row;
@@ -56,7 +56,7 @@
 
 
 @media only screen and (max-width: 756px) {
-    .hero-text-container{
+    .hero-text-container {
         position: absolute;
         z-index: 23;
         max-width: 800px;
@@ -66,11 +66,11 @@
 }
 
 /* Filtrer */
-.filter-container{
+.filter-container {
     position: relative;
 }
 
-.filter-button{
+.filter-button {
     padding-left: 30px;
     padding-right: 30px;
     height: 40px;
@@ -78,7 +78,7 @@
     cursor: pointer;
 }
 
-.filter-inner{
+.filter-inner {
     color: white;
     display: flex;
     justify-content: center;
@@ -87,7 +87,7 @@
     height: 100%;
 }
 
-.filtermenue-container{
+.filtermenue-container {
     position: absolute;
     z-index: 30;
     width: 300px;
@@ -104,9 +104,22 @@
 }
 
 /* Slider */
-.slider{
+.slider {
     max-width: 1449px;
     overflow: hidden;
     overflow-x: scroll;
 }
 
+/* Rezepte Container */
+.recipe-conainer {
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    width: auto;
+}
+
+.recipe-conainer-inner {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+}
