@@ -3,6 +3,7 @@ package com.example.myRezept_Backend.controller;
 import com.example.myRezept_Backend.model.User;
 import com.example.myRezept_Backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

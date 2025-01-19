@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../layout/header';
 import Footer from '../layout/footer';
+import RezepteKacheltext from '../layout/RezeptKacheltext';
 
 function UserSettings() {
     // Die Recipes-Komponente sollte außerhalb von UserSettings definiert sein oder direkt in die Render-Logik integriert werden.
@@ -47,9 +48,18 @@ function UserSettings() {
                                 ))}
                             </ol>
                             <img
-                                src={`http://localhost:8080/images/${recipe.id}.jpg`} // Bild-URL anpassen
+                                src={`/${recipe.id}`} // Bild-URL anpassen
                                 alt={`${recipe.name} Bild`}
                                 className="recipe-image"
+                            />
+
+                            <RezepteKacheltext
+                                img={recipe.imageUrl}
+                                name={recipe.name}
+                                time={recipe.time}
+                                category={recipe.ingredients.split(', ').map((category, index) => (
+                                    <li key={index}>{category}</li>
+                                ))}
                             />
                         </div>
                     ))

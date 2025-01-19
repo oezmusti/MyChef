@@ -1,4 +1,4 @@
-package controller;
+package com.example.myRezept_Backend.controller;
 
 import com.example.myRezept_Backend.model.User;
 import com.example.myRezept_Backend.repository.UserRepository;

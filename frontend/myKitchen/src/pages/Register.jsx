@@ -13,6 +13,9 @@ function Register() {
 
 
         try {
+
+            const role = 'User';
+
             const response = await fetch('http://localhost:8080/api/auth/register', {
                 method: 'POST',
                 headers: {
@@ -23,6 +26,7 @@ function Register() {
                     username,
                     email,
                     password,
+                    role,
                 }),
             });
 
