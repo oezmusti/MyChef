@@ -38,53 +38,27 @@ function DetailsRecipe() {
     return (
         <>
             <Header />
-            <div>
-                <h1>{recipe.name}</h1>
-                <img src={recipe.imageUrl} alt={recipe.name} />
+            <div className='content'>
+                <div className='rd-img-container'>
+                    <img className='rd-img-inner' src={recipe.imageUrl} alt={recipe.name} />
+                </div>
+                <div>
+                    <h1 className='recipe-headline'>{recipe.name}</h1>
+                </div>
+                <div className='recipe-description'>
+                    <div>{recipe.description}</div>
+                </div>
                 <p>Zubereitungszeit: {recipe.time} Minuten</p>
                 <p>Kategorie: {recipe.category}</p>
-                <p>Zutaten:</p>
-                <ul>
-                    {recipe.ingredients.split(', ').map((ingredient, index) => (
-                        <li key={index}>{ingredient}</li>
-                    ))}
-                </ul>
-                <p>Zubereitung:</p>
-                <p>{recipe.steps}</p>
-            </div>
-            <div className='content'>
-                <div className='container'>
-                    <div className='box'>
-                        <img src={recipe.imageUrl} alt={recipe.name} />
-                    </div>
-                    <div className='box'>
-                        <div className='headline'>
-                            {recipe.name}
-                        </div>
-                        <p>
-                            {recipe.description}
-                        </p>
-                    </div>
-                </div>
-                <div className='container'>
-                    <div className='box'>
-                        <div className='recepi-headline'>
-                            Zutaten
-                        </div>
-                        <ul>
-                            {recipe.ingredients.split(', ').map((ingredient, index) => (
-                                <li key={index}>{ingredient}</li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className='box'>
-                        <div className='recepi-headline'>
+                <div className='flex-two '>
+                    <div className='flex-two-left-7'>
+                        <div className='recipe-subheadline'>
                             Zubereitung
                         </div>
                         <ul>
                             {recipe.steps.split(', ').map((steps, index) => (
-                                <li key={index}>
-                                    <div>
+                                <li className='steps-container' key={index}>
+                                    <div className='steps'>
                                         Steps {index + 1}
                                     </div>
                                     <div>
@@ -94,9 +68,29 @@ function DetailsRecipe() {
                             ))}
                         </ul>
                     </div>
+                    <div className='flex-two-right-3'>
+                        <div className='recipe-subheadline'>Zutaten:</div>
+                        <div className='recipe-ingrediantlist'>
+                            <div className='ingrediants'>
+                                <ul>
+                                    {recipe.ingredients.split(', ').map((ingredient, index) => (
+                                        <li className='ingredient-steps' key={index}>{ingredient}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className='quantitys'>
+                                <ul>
+                                    {recipe.quantity.split(', ').map((quantity, index) => (
+                                        <li className='ingredient-steps' key={index}>{quantity}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <p>Zubereitung:</p>
+                <p>{recipe.steps}</p>
             </div>
-
             <Footer />
         </>
     );

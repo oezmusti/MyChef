@@ -96,7 +96,8 @@ function FormV2() {
             categories: formData.categories,
             publics: formData.publics,
             ingredients: formData.ingredients,
-            steps: formData.steps
+            steps: formData.steps,
+            quantity: formData.quantity,
         }));
 
         console.log('Gesendete Daten:' + formDataToSend)
@@ -113,7 +114,6 @@ function FormV2() {
             .then(data => {
                 console.log('Recipe saved:', data);
                 navigate('/'); //Auf root zurück navigieren, wenn erfolgreich 
-                // Weitere Aktionen nach dem Absenden, wie z.B. eine Erfolgsnachricht anzeigen
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -293,15 +293,27 @@ function FormV2() {
             case 3:
                 return (
                     <div className="relative h-full">
-                        <div className='mb-4'>
-                            <label className='pb-2' htmlFor="ingredients"> Zutaten* </label>
-                            <textarea
-                                className='mt-2 w-full h-32 block border border-gold-500 focus:border focus:border-gold-700 rounded-md'
-                                name="ingredients"
-                                id="ingredients"
-                                value={formData.ingredients}
-                                onChange={handleInputChange}
-                            ></textarea>
+                        <div className='grid grid-cols-3 gap-5 mb-3'>
+                            <div className='mb-4 col-span-2'>
+                                <label className='pb-2' htmlFor="ingredients"> Zutaten* </label>
+                                <textarea
+                                    className='mt-2 w-full h-64 block border border-gold-500 focus:border focus:border-gold-700 rounded-md'
+                                    name="ingredients"
+                                    id="ingredients"
+                                    value={formData.ingredients}
+                                    onChange={handleInputChange}
+                                ></textarea>
+                            </div>
+                            <div className='mb-4 col-span-1'>
+                                <label className='pb-2 invisible' htmlFor="ingredients"> Zutaten* </label>
+                                <textarea
+                                    className='mt-2 w-full h-64 block border border-gold-500 focus:border focus:border-gold-700 rounded-md'
+                                    name="quantity"
+                                    id="quantity"
+                                    value={formData.quantity}
+                                    onChange={handleInputChange}
+                                ></textarea>
+                            </div>
                         </div>
 
                         <div className='absolute bottom-4 right-[6.5rem]'>
@@ -318,7 +330,7 @@ function FormV2() {
                         <div className='mb-4'>
                             <label className='pb-2' htmlFor="steps"> Zubereitungsschritte* </label>
                             <textarea
-                                className='mt-2 w-full h-32 block border border-gold-500 focus:border focus:border-gold-700 rounded-md'
+                                className='mt-2 w-full h-64 block border border-gold-500 focus:border focus:border-gold-700 rounded-md'
                                 name="steps"
                                 id="steps"
                                 value={formData.steps}
