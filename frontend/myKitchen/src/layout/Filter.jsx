@@ -139,7 +139,7 @@ function Filter() {
                                 <option value="fruehstueck">Frühstück</option>
                                 <option value="mittag">Mittagessen</option>
                                 <option value="abend">Abendessen</option>
-                                <option value="deser">Deser</option>
+                                <option value="deser">Dessert</option>
                                 <option value="snack">Snack</option>
                             </select>
                         </div>
