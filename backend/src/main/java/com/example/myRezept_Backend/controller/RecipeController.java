@@ -77,4 +77,11 @@ public class RecipeController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    // GET: Rezepte durchsuchen
+//    @GetMapping("/search")
+//    public ResponseEntity<List<Recipe>> searchRecipes(@RequestParam("query") String query) {
+//        List<Recipe> recipes = recipeService.searchRecipes(query);
+//        return new ResponseEntity<>(recipes, HttpStatus.OK);
+//    }
 }

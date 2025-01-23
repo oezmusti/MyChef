@@ -294,6 +294,16 @@ function FormV2() {
                 return (
                     <div className="relative h-full">
                         <div className='grid grid-cols-3 gap-5 mb-3'>
+                            <div className='mb-4 col-span-1'>
+                                <label className='pb-2' htmlFor="ingredients"> Menge* </label>
+                                <textarea
+                                    className='mt-2 w-full h-64 block border border-gold-500 focus:border focus:border-gold-700 rounded-md'
+                                    name="quantity"
+                                    id="quantity"
+                                    value={formData.quantity}
+                                    onChange={handleInputChange}
+                                ></textarea>
+                            </div>
                             <div className='mb-4 col-span-2'>
                                 <label className='pb-2' htmlFor="ingredients"> Zutaten* </label>
                                 <textarea
@@ -301,16 +311,6 @@ function FormV2() {
                                     name="ingredients"
                                     id="ingredients"
                                     value={formData.ingredients}
-                                    onChange={handleInputChange}
-                                ></textarea>
-                            </div>
-                            <div className='mb-4 col-span-1'>
-                                <label className='pb-2 invisible' htmlFor="ingredients"> Zutaten* </label>
-                                <textarea
-                                    className='mt-2 w-full h-64 block border border-gold-500 focus:border focus:border-gold-700 rounded-md'
-                                    name="quantity"
-                                    id="quantity"
-                                    value={formData.quantity}
                                     onChange={handleInputChange}
                                 ></textarea>
                             </div>

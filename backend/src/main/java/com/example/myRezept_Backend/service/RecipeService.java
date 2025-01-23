@@ -62,4 +62,9 @@ public class RecipeService {
         return recipeRepository.findById(id).orElse(null);
     }
 
+    // Suche nach Rezepten
+//    public List<Recipe> searchRecipes(String query) {
+//        return recipeRepository.findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCaseOrIngredientsContainingIgnoreCaseOrCategoriesContaining(
+//                query, query, query, query);
+//    }
 }
