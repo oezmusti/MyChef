@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import com.example.myRezept_Backend.util.JwtUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +18,9 @@ public class AuthController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -48,8 +53,19 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Invalid email or password");
         }
 
+        String token = jwtUtil.generateToken(user.getEmail());
+
         Map<String, String> response = new HashMap<>();
+        response.put("token", token);
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String userJson = objectMapper.writeValueAsString(user);
+            response.put("user", userJson);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error converting user to JSON");
+        }
         response.put("message", "User logged in successfully");
+        System.out.println("Login erfolgreich: " + user.getEmail());
         return ResponseEntity.ok(response);
     }
 }
