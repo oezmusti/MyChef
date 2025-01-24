@@ -207,3 +207,42 @@
     font-family: 'Roboto';
     line-height: 30px;
 }
+
+/*cssKacheln*/
+.heart {
+    cursor: pointer;
+    transition: fill 0.3s ease-in-out;
+}
+
+.heart:hover {
+    fill: #ff0000;
+}
+
+ul {
+    list-style: none; 
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    padding: 0.5rem 1rem; 
+    border-bottom: 1px solid #ddd; 
+}
+
+li:last-child {
+    border-bottom: none; 
+}
+
+li:hover {
+    background-color: #f0f0f0; 
+    cursor: pointer; 
+}
+
+li.delete {
+    color: red;
+}
+
+li.delete:hover {
+    color: darkred; 
+    background-color: #f0f0f0; 
+}
