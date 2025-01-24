@@ -8,6 +8,7 @@ function Liked() {
             <Header />
             <div className='content'>
                 <h1>Liked</h1>
+                <p>Geliketes</p>
             </div>
             <Footer />
         </>
