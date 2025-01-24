@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/base.css';
 import Filter from './Filter';
 
@@ -9,6 +10,16 @@ function Header() {
     // Funktion zum Öffnen und Schließen des Menüs
     const toggleNav = () => {
         setIsNavOpen(prevState => !prevState);
+    };
+
+    const [searchTerm, setSearchTerm] = useState(''); // State für das Suchfeld
+    const navigate = useNavigate(); // Hook für Navigation
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault(); // Standardformular-Aktion verhindern
+        if (searchTerm.trim()) {
+            navigate(`/serch/${searchTerm.trim()}`); // Benutzer zur Suchseite weiterleiten
+        }
     };
 
     return (
@@ -24,20 +35,28 @@ function Header() {
                     <div className="w-[130px] md:w-[200px] flex items-center justify-center h-full">
 
                         {/* Searchbar */}
-                        <form className="">
-                            <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+                        <form onSubmit={handleSearchSubmit}>
+                            <label htmlFor="default-search" className="sr-only">Search</label>
                             <div className="relative">
-                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                    <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                    </svg>
-                                </div>
-                                <input type="search" id="default-search" className="block w-96 h-[40px] p-4 ps-10 text-sm text-gray-900 border border-gold-300 rounded-lg" placeholder="Suche..." required />
-                                <button type="submit" className="text-[#FFF] absolute end-2.5 bottom-1.5 bg-gold-200 hover:bg-gold-300 font-medium rounded-lg text-sm px-2 py-1">Search</button>
+                                <input
+                                    type="search"
+                                    id="default-search"
+                                    className="block w-96 h-[40px] p-4 ps-10 text-sm text-gray-900 border border-gold-300 rounded-lg"
+                                    placeholder="Suche..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)} // Eingabe verwalten
+                                    required
+                                />
+                                <button
+                                    type="submit"
+                                    className="text-[#FFF] absolute end-2.5 bottom-1.5 bg-gold-200 hover:bg-gold-300 font-medium rounded-lg text-sm px-2 py-1"
+                                >
+                                    Search
+                                </button>
                             </div>
                         </form>
 
-                        <Filter />
+                        {/* <Filter /> */}
 
                     </div>
                     <div className="flex items-center gap-3 h-full">

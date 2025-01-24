@@ -29,6 +29,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<LogIn />} />
         <Route path='/serch' element={<Search />} />
+        <Route path='/serch/:searchTerm' element={<Search />} />
         <Route path='/Settings' element={<UserSettings />} />
       </Routes>
     </Router>
