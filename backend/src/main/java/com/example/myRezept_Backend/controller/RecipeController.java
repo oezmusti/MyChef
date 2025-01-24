@@ -79,9 +79,9 @@ public class RecipeController {
     }
 
     // GET: Rezepte durchsuchen
-//    @GetMapping("/search")
-//    public ResponseEntity<List<Recipe>> searchRecipes(@RequestParam("query") String query) {
-//        List<Recipe> recipes = recipeService.searchRecipes(query);
-//        return new ResponseEntity<>(recipes, HttpStatus.OK);
-//    }
+    @GetMapping("/search")
+    public ResponseEntity<List<Recipe>> searchRecipes(@RequestParam("query") String query) {
+        List<Recipe> recipes = recipeService.searchRecipes(query);
+        return new ResponseEntity<>(recipes, HttpStatus.OK);
+    }
 }

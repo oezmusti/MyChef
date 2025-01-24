@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../css/base.css';
 
-function Filter() {
+function Filter({ onFilterChange }) {
+    const [categories, setCategories] = useState([]);
+    const [mealType, setMealType] = useState('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
     const [clickCount, setClickCount] = useState(0);
@@ -14,6 +16,22 @@ function Filter() {
             setIsMenuOpen(false); //Ansonsten wieder ausschalten 
         }
         //console.log(clickCount);
+    };
+
+    const handleCategoryChange = (e) => {
+        const value = e.target.value;
+        setCategories((prev) =>
+            prev.includes(value) ? prev.filter((category) => category !== value) : [...prev, value]
+        );
+    };
+
+    const handleMealTypeChange = (e) => {
+        setMealType(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onFilterChange({ categories, mealType });
     };
 
     return (
@@ -29,103 +47,40 @@ function Filter() {
                         Filter
                     </div>
                 </div>
-
                 {/* Filter-Menü */}
                 <div
                     id="filtermenue"
                     ref={menuRef}
-                    className={`filtermenue-container ${isMenuOpen ? '' : 'hidden'}`}
+                    className={` ${isMenuOpen ? '' : 'hidden'}`}
                 >
-                    <form action="">
-                        {/* Ernährungsart */}
+                    <form onSubmit={handleSubmit}>
+                        {/* Kategorien */}
                         <div className="flex flex-col mb-4">
                             <div className="pb-2">Kategorien</div>
                             <ul className="grid w-full gap-1 md:grid-cols-3">
-                                <li>
-                                    <input
-                                        type="checkbox"
-                                        id="veganfilter"
-                                        value="vegan"
-                                        className="hidden peer"
-                                    />
-                                    <label
-                                        htmlFor="veganfilter"
-                                        className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700  peer-checked:bg-gold-700 peer-checked:text-white"
-                                    >
-                                        <div className="block text-sm mx-auto">
-                                            Vegan
-                                        </div>
-                                    </label>
-                                </li>
-                                {/* Weitere Kategorien */}
-                                <li>
-                                    <input
-                                        type="checkbox"
-                                        id="vegetarischfilter"
-                                        value="vegetarisch"
-                                        className="hidden peer"
-                                    />
-                                    <label
-                                        htmlFor="vegetarischfilter"
-                                        className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700  peer-checked:bg-gold-700 peer-checked:text-white"
-                                    >
-                                        <div className="block text-sm mx-auto">
-                                            Vegetarisch
-                                        </div>
-                                    </label>
-                                </li>
-                                <li>
-                                    <input
-                                        type="checkbox"
-                                        id="Vollkostfilter"
-                                        value="Vollkost"
-                                        className="hidden peer"
-                                    />
-                                    <label
-                                        htmlFor="Vollkostfilter"
-                                        className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700  peer-checked:bg-gold-700 peer-checked:text-whites"
-                                    >
-                                        <div className="block text-sm mx-auto">
-                                            Vollkost
-                                        </div>
-                                    </label>
-                                </li>
-                                <li>
-                                    <input
-                                        type="checkbox"
-                                        id="glutenfreifilter"
-                                        value="glutenfrei"
-                                        className="hidden peer"
-                                    />
-                                    <label
-                                        htmlFor="glutenfreifilter"
-                                        className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700 peer-checked:bg-gold-700 peer-checked:text-white"
-                                    >
-                                        <div className="block text-sm mx-auto">
-                                            Gluten-frei
-                                        </div>
-                                    </label>
-                                </li>
-                                <li>
-                                    <input
-                                        type="checkbox"
-                                        id="low-carbfilter"
-                                        value="low-carb"
-                                        className="hidden peer"
-                                    />
-                                    <label
-                                        htmlFor="low-carbfilter"
-                                        className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700  peer-checked:bg-gold-700 peer-checked:text-white"
-                                    >
-                                        <div className="block text-sm mx-auto">
-                                            Low-Carb
-                                        </div>
-                                    </label>
-                                </li>
+                                {['vegan', 'vegetarisch', 'Vollkost', 'glutenfrei', 'low-carb'].map((category) => (
+                                    <li key={category}>
+                                        <input
+                                            type="checkbox"
+                                            id={`${category}-filter`}
+                                            value={category}
+                                            onChange={handleCategoryChange}
+                                            className="hidden peer"
+                                        />
+                                        <label
+                                            htmlFor={`${category}-filter`}
+                                            className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700  peer-checked:bg-gold-700 peer-checked:text-white"
+                                        >
+                                            <div className="block text-sm mx-auto">
+                                                {category.charAt(0).toUpperCase() + category.slice(1)}
+                                            </div>
+                                        </label>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
 
-                        {/* Tagesmahlzeiten */}
+                        {/* Mahlzeitentyp */}
                         <div className="flex flex-col mb-4">
                             <label className="pb-2" htmlFor="mealType">
                                 Tagesmahlzeiten
@@ -134,12 +89,14 @@ function Filter() {
                                 className="block border border-gold-500 focus:border focus:border-gold-700 rounded-md h-8"
                                 id="mealType"
                                 name="mealType"
+                                value={mealType}
+                                onChange={handleMealTypeChange}
                             >
-                                <option value="none"></option>
+                                <option value="">Alle</option>
                                 <option value="fruehstueck">Frühstück</option>
                                 <option value="mittag">Mittagessen</option>
                                 <option value="abend">Abendessen</option>
-                                <option value="deser">Dessert</option>
+                                <option value="dessert">Dessert</option>
                                 <option value="snack">Snack</option>
                             </select>
                         </div>

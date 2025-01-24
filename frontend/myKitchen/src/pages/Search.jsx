@@ -1,59 +1,104 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Header from '../layout/header';
 import Footer from '../layout/footer';
-import { useState } from "react";
+import RezepteKacheltext from '../layout/RezeptKacheltext';
+import Filter from '../layout/Filter';
 
 function Search() {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [recipes, setRecipes] = useState([]);
+    const { searchTerm } = useParams(); // Suchbegriff aus URL
+    const [recipes, setRecipes] = useState([]); // State für die Suchergebnisse
+    const [loading, setLoading] = useState(true); // Ladezustand
+    const [filteredRecipes, setFilteredRecipes] = useState([]);
+    const [filters, setFilters] = useState({
+        categories: [],
+        mealType: ''
+    });
 
-    const handleSearch = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch(`http://localhost:8080/api/recipes/search?query=${searchTerm}`);
-            if (!response.ok) {
-                throw new Error("Fehler beim Abrufen der Daten.");
+    useEffect(() => {
+        const fetchRecipes = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch(`http://localhost:8080/api/recipes/search?query=${searchTerm}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setRecipes(data); // Ergebnisse speichern
+                } else {
+                    console.error('Fehler beim Abrufen der Daten.');
+                }
+            } catch (error) {
+                console.error('Fehler:', error);
+            } finally {
+                setLoading(false);
             }
-            const data = await response.json();
-            setRecipes(data);
-        } catch (error) {
-            console.error("Fehler bei der Suche:", error);
-        }
-    };
+        };
 
+        fetchRecipes();
+    }, [searchTerm]); // Bei Änderung des Suchbegriffs die API erneut aufrufen
+
+    useEffect(() => {
+        // Filterlogik anwenden
+        const applyFilters = () => {
+            let filtered = recipes;
+
+            // Filter nach Kategorien
+            if (filters.categories.length > 0) {
+                filtered = filtered.filter((recipe) =>
+                    filters.categories.some((category) => recipe.categories.includes(category))
+                );
+            }
+
+            // Filter nach Mahlzeitentyp
+            if (filters.mealType) {
+                filtered = filtered.filter((recipe) => recipe.mealType === filters.mealType);
+            }
+
+            setFilteredRecipes(filtered);
+        };
+
+        applyFilters();
+    }, [filters, recipes]);
+
+    const handleFilterChange = (newFilters) => {
+        setFilters(newFilters);
+    };
     return (
         <>
             <Header />
-            <main className="p-4">
-                <form onSubmit={handleSearch}>
-                    <input
-                        type="text"
-                        placeholder="Geben Sie einen Suchbegriff ein..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="p-2 border rounded w-full mb-4"
-                    />
-                    <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-                        Suchen
-                    </button>
-                </form>
-
-                {recipes.length > 0 ? (
-                    <div className="mt-4">
-                        <h2>Suchergebnisse:</h2>
-                        <ul>
-                            {recipes.map((recipe) => (
-                                <li key={recipe.id}>
-                                    <h3>{recipe.name}</h3>
-                                    <p>{recipe.description}</p>
-                                </li>
-                            ))}
-                        </ul>
+            {loading ? (
+                <p>Wird geladen...</p>
+            ) : recipes.length > 0 ? (
+                <div className='content'>
+                    <div className='headline'>
+                        Suchergebnisse für: "{searchTerm}"
                     </div>
-                ) : (
-                    <p>Keine Rezepte gefunden.</p>
-                )}
-            </main>
+                    <div className='mb-5'>
+                        <Filter onFilterChange={handleFilterChange} />
+                    </div>
+                    <div className='recipe-conainer'>
+                        <div className='recipe-conainer-inner'>
+                            {recipes.length === 0 ? (
+                                <p>Keine Rezepte verfügbar.</p>
+                            ) : (
+                                filteredRecipes.map((recipe) => (
+                                    <RezepteKacheltext
+                                        key={recipe.id}
+                                        id={recipe.id}
+                                        img={recipe.imageUrl}
+                                        name={recipe.name}
+                                        time={recipe.time}
+                                        category={recipe.ingredients.split(', ').map((category, index) => (
+                                            <li key={index}>{category}</li>
+                                        ))}
+                                    />
+                                ))
+                            )}
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <p>Keine Ergebnisse gefunden.</p>
+            )}
             <Footer />
         </>
     );

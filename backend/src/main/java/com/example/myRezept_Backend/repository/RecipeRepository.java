@@ -19,6 +19,6 @@ import java.util.List;
 @Repository
 public interface RecipeRepository extends MongoRepository<Recipe, ObjectId> {
     // Suche in mehreren Feldern
-//    List<Recipe> findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCaseOrIngredientsContainingIgnoreCaseOrCategoriesContaining(
-//            String name, String description, String ingredients, String category);
+    List<Recipe> findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCaseOrIngredientsContainingIgnoreCaseOrCategoriesContainingIgnoreCaseOrTimeContainingIgnoreCaseOrMealtypContaining(
+            String name, String description, String ingredients, String category, String time, String mealtyp);
 }
