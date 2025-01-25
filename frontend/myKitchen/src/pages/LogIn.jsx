@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Header from '../layout/header';
 import Footer from '../layout/footer';
+import {useNavigate} from "react-router-dom";
 
 function LogIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    const navigate = useNavigate()
 
     const handleLogin = async (event) => {
         event.preventDefault(); // Verhindert, dass die Seite neu geladen wird
@@ -27,7 +29,9 @@ function LogIn() {
                 const data = await response.json();
                 setSuccessMessage('Login erfolgreich!'); // Zeige Erfolgsnachricht
                 setErrorMessage(''); // Lösche Fehlernachricht
-                console.log('Benutzer-Token:', data.token); // Bearbeite das Token (z.B. speichere es im LocalStorage)
+                localStorage.setItem('userToken', data.token); // Speichern des JWT im LS
+                console.log('Benutzer-Token:', data.token); 
+                navigate('/dashboard');
             } else {
                 const errorData = await response.json();
                 setErrorMessage(errorData.message || 'Login fehlgeschlagen!');
@@ -48,7 +52,7 @@ function LogIn() {
                     <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gold-400 md:text-2xl">
-                                Log IN
+                                Login
                             </h1>
                             <form className="space-y-4 md:space-y-6" onSubmit={handleLogin}>
                                 <div>
