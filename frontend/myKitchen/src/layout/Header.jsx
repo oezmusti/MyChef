@@ -114,9 +114,9 @@ function Header() {
                         <a href="liked">
                             <div className="w-full py-6 pl-8 hover:bg-[#52796F] transition-all duration-300 ease-in-out flex gap-4">
                                 <div className="h-[25px] w-[30px]">
-                                    <img className="h-[25px] w-auto" src="/icons/icon-like.svg" alt="Geleikte Rezepte Icon" />
+                                    <img className="h-[25px] w-auto" src="/icons/icon-like.svg" alt="Favorisierte Rezepte Icon" />
                                 </div>
-                                <div>Geleikte Rezepte</div>
+                                <div>Favorisierte Rezepte</div>
                             </div>
                         </a>
                     </div>
