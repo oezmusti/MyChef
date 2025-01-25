@@ -14,7 +14,7 @@ function RezepteKacheltext({ id, img, name, description, time, lvl, mealtyp, cat
     };
 
     const [isLiked, setIsLiked] = useState(rezept.isliked === 'true');
-    const [menuVisible, setMenuVisible] = useState(false); 
+    const [menuVisible, setMenuVisible] = useState(false);
 
     const handleLikeClick = () => {
         setIsLiked(!isLiked);
@@ -31,7 +31,7 @@ function RezepteKacheltext({ id, img, name, description, time, lvl, mealtyp, cat
     return (
         <>
             <div className="w-72 h-72 bg-white rounded-xl shadow-lg relative">
-                
+
                 <div className="relative">
                     <Link to={`/detail/${id}`} >
                         <div>
@@ -50,7 +50,7 @@ function RezepteKacheltext({ id, img, name, description, time, lvl, mealtyp, cat
                             >
                                 <path
                                     d="M8.88658 16.6603L8.88586 16.6596C6.30103 14.3157 4.19577 12.4033 2.73087 10.6111C1.27147 8.82559 0.49999 7.22062 0.49999 5.5C0.49999 2.68674 2.69554 0.5 5.49999 0.5C7.08884 0.5 8.62205 1.24223 9.62057 2.40564L9.99999 2.84771L10.3794 2.40564C11.3779 1.24223 12.9111 0.5 14.5 0.5C17.3044 0.5 19.5 2.68674 19.5 5.5C19.5 7.22062 18.7285 8.82559 17.2691 10.6111C15.8042 12.4033 13.699 14.3157 11.1141 16.6596L11.1134 16.6603L9.99999 17.6738L8.88658 16.6603Z"
-                                    fill={isLiked ? 'red' : 'transparent'} 
+                                    fill={isLiked ? 'red' : 'transparent'}
                                     stroke="black"
                                 />
                             </svg>
@@ -76,10 +76,10 @@ function RezepteKacheltext({ id, img, name, description, time, lvl, mealtyp, cat
                                 style={{ top: '0', left: '110%' }}
                                 onMouseLeave={closeMenu}
                             >
-                                <ul className="text-black font-Roboto p-2">
-                                    <li className="p-1 hover:bg-gray-200 cursor-pointer">Ansehen</li>
-                                    <li className="p-1 hover:bg-gray-200 cursor-pointer">Bearbeiten</li>
-                                    <li className="p-1 hover:bg-gray-200 cursor-pointer delete">Löschen</li>
+                                <ul className="text-black font-Roboto p-2 list-none m-0">
+                                    <li className="recipe-li p-1 hover:bg-gray-200 cursor-pointer">Ansehen</li>
+                                    <li className="recipe-li p-1 hover:bg-gray-200 cursor-pointer">Bearbeiten</li>
+                                    <li className="recipe-li p-1 hover:bg-gray-200 cursor-pointer delete">Löschen</li>
                                 </ul>
                             </div>
                         )}
