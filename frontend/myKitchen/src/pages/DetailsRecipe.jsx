@@ -27,6 +27,24 @@ function DetailsRecipe() {
             });
     }, [id]);
 
+
+    function handleDelete() {
+        fetch(`http://localhost:8080/api/recipes/${id}`, {
+            method: 'DELETE',
+        })
+            .then((response) => {
+                if (response.ok) {
+                    window.location.href = '/';
+                } else {
+                    alert('Fehler beim Löschen des Rezepts!');
+                }
+            })
+            .catch((error) => {
+                console.error('Fehler:', error);
+                alert('Fehler beim Löschen des Rezepts!');
+            });
+    }
+
     if (loading) {
         return <p>Loading...</p>;
     }
@@ -49,7 +67,9 @@ function DetailsRecipe() {
                     <div>{recipe.description}</div>
                 </div>
                 <p>Zubereitungszeit: {recipe.time} Minuten</p>
-                <p>Kategorie: {recipe.category}</p>
+                <p>Kategorien: {recipe.categories.join(', ')}</p>
+                <p>Nahlzeit: {recipe.mealtyp}</p>
+                <p>Lvl: {recipe.lvl}</p>
                 <div className='flex-two '>
                     <div className='flex-two-left-7'>
                         <div className='recipe-subheadline'>
@@ -90,6 +110,10 @@ function DetailsRecipe() {
                 </div>
                 <p>Zubereitung:</p>
                 <p>{recipe.steps}</p>
+                <div>
+                    {/* Löschen Button */}
+                    <button onClick={handleDelete} className="delete-button">Rezept löschen</button>
+                </div>
             </div>
             <Footer />
         </>

@@ -1,21 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import '../css/base.css';
 
 function Filter({ onFilterChange }) {
     const [categories, setCategories] = useState([]);
-    const [mealType, setMealType] = useState('');
+    const [mealtyp, setMealtyp] = useState('');
+    const [lvl, serLvl] = useState('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
     const [clickCount, setClickCount] = useState(0);
 
-    const toggleMenu = (event) => {
-        setClickCount((prev) => prev + 1); // Inkrementiere den Klickzähler
-        if (clickCount % 2 === 0) { //Wenn zähler modulo 2 === 0 dann geht das Menü an
+    const toggleMenu = () => {
+        setClickCount((prev) => prev + 1);
+        if (clickCount % 2 === 0) {
             setIsMenuOpen((prev) => !prev);
         } else {
-            setIsMenuOpen(false); //Ansonsten wieder ausschalten 
+            setIsMenuOpen(false);
         }
-        //console.log(clickCount);
     };
 
     const handleCategoryChange = (e) => {
@@ -25,13 +25,17 @@ function Filter({ onFilterChange }) {
         );
     };
 
-    const handleMealTypeChange = (e) => {
-        setMealType(e.target.value);
+    const handleMealtypChange = (e) => {
+        setMealtyp(e.target.value);
     };
+
+    const handleLvlChange = (e) => {
+        serLvl(e.target.value);
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onFilterChange({ categories, mealType });
+        onFilterChange({ categories, mealtyp, lvl });
     };
 
     return (
@@ -51,7 +55,7 @@ function Filter({ onFilterChange }) {
                 <div
                     id="filtermenue"
                     ref={menuRef}
-                    className={` ${isMenuOpen ? '' : 'hidden'}`}
+                    className={`${isMenuOpen ? '' : 'hidden'}`}
                 >
                     <form onSubmit={handleSubmit}>
                         {/* Kategorien */}
@@ -69,7 +73,7 @@ function Filter({ onFilterChange }) {
                                         />
                                         <label
                                             htmlFor={`${category}-filter`}
-                                            className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700  peer-checked:bg-gold-700 peer-checked:text-white"
+                                            className="inline-flex items-center justify-between w-full h-8 text-gray-500 bg-white border-2 border-gold-500 rounded-lg cursor-pointer peer-checked:border-gold-700 peer-checked:bg-gold-700 peer-checked:text-white"
                                         >
                                             <div className="block text-sm mx-auto">
                                                 {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -82,22 +86,41 @@ function Filter({ onFilterChange }) {
 
                         {/* Mahlzeitentyp */}
                         <div className="flex flex-col mb-4">
-                            <label className="pb-2" htmlFor="mealType">
+                            <label className="pb-2" htmlFor="mealtyp">
                                 Tagesmahlzeiten
                             </label>
                             <select
                                 className="block border border-gold-500 focus:border focus:border-gold-700 rounded-md h-8"
-                                id="mealType"
-                                name="mealType"
-                                value={mealType}
-                                onChange={handleMealTypeChange}
+                                id="mealtyp"
+                                name="mealtyp"
+                                value={mealtyp}
+                                onChange={handleMealtypChange}
                             >
                                 <option value="">Alle</option>
                                 <option value="fruehstueck">Frühstück</option>
                                 <option value="mittag">Mittagessen</option>
                                 <option value="abend">Abendessen</option>
-                                <option value="dessert">Dessert</option>
+                                <option value="deser">Dessert</option>
                                 <option value="snack">Snack</option>
+                            </select>
+                        </div>
+
+                        {/* Mahlzeitentyp */}
+                        <div className="flex flex-col mb-4">
+                            <label className="pb-2" htmlFor="lvl">
+                                Tagesmahlzeiten
+                            </label>
+                            <select
+                                className="block border border-gold-500 focus:border focus:border-gold-700 rounded-md h-8"
+                                id="lvl"
+                                name="lvl"
+                                value={lvl}
+                                onChange={handleLvlChange}
+                            >
+                                <option value="">Alle</option>
+                                <option value="leicht">leicht</option>
+                                <option value="mittel">mittel</option>
+                                <option value="schwer">schwer</option>
                             </select>
                         </div>
 

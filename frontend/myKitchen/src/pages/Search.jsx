@@ -12,7 +12,8 @@ function Search() {
     const [filteredRecipes, setFilteredRecipes] = useState([]);
     const [filters, setFilters] = useState({
         categories: [],
-        mealType: ''
+        mealtyp: '',
+        lvl: ''
     });
 
     useEffect(() => {
@@ -34,7 +35,7 @@ function Search() {
         };
 
         fetchRecipes();
-    }, [searchTerm]); // Bei Änderung des Suchbegriffs die API erneut aufrufen
+    }, [searchTerm]);
 
     useEffect(() => {
         // Filterlogik anwenden
@@ -49,8 +50,13 @@ function Search() {
             }
 
             // Filter nach Mahlzeitentyp
-            if (filters.mealType) {
-                filtered = filtered.filter((recipe) => recipe.mealType === filters.mealType);
+            if (filters.mealtyp) {
+                filtered = filtered.filter((recipe) => recipe.mealtyp === filters.mealtyp);
+            }
+
+            // Filter nach lvl
+            if (filters.lvl) {
+                filtered = filtered.filter((recipe) => recipe.lvl === filters.lvl);
             }
 
             setFilteredRecipes(filtered);

@@ -84,4 +84,25 @@ public class RecipeController {
         List<Recipe> recipes = recipeService.searchRecipes(query);
         return new ResponseEntity<>(recipes, HttpStatus.OK);
     }
+
+    // DELETE-Methode: Rezept löschen
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteRecipe(@PathVariable String id) {
+        try {
+            // Konvertiere die String-ID in einen ObjectId
+            ObjectId objectId = new ObjectId(id);
+
+            // Rezept aus dem Service löschen
+            boolean deleted = recipeService.deleteRecipe(objectId);
+
+            if (deleted) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Erfolgreiches Löschen
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Rezept nicht gefunden
+            }
+        } catch (IllegalArgumentException e) {
+            // Falls die ID keine gültige ObjectId ist
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 }

@@ -67,4 +67,13 @@ public class RecipeService {
         return recipeRepository.findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCaseOrIngredientsContainingIgnoreCaseOrCategoriesContainingIgnoreCaseOrTimeContainingIgnoreCaseOrMealtypContaining(
                 query, query, query, query, query, query);
     }
+
+    public boolean deleteRecipe(ObjectId id) {
+        Recipe recipe = recipeRepository.findById(id).orElse(null);
+        if (recipe != null) {
+            recipeRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 }

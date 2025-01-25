@@ -9,11 +9,11 @@ function Rezepte() {
     const [filteredRecipes, setFilteredRecipes] = useState([]);
     const [filters, setFilters] = useState({
         categories: [],
-        mealType: ''
+        mealtyp: '',
+        lvl: ''
     });
 
     useEffect(() => {
-        // Daten von der API abrufen
         fetch('http://localhost:8080/api/recipes')
             .then((response) => {
                 if (!response.ok) {
@@ -23,7 +23,7 @@ function Rezepte() {
             })
             .then((data) => {
                 setRecipes(data);
-                setFilteredRecipes(data); // Alle Rezepte initial anzeigen
+                setFilteredRecipes(data);
             })
             .catch((error) => console.error('Fehler beim Abrufen der Rezepte:', error));
     }, []);
@@ -41,8 +41,13 @@ function Rezepte() {
             }
 
             // Filter nach Mahlzeitentyp
-            if (filters.mealType) {
-                filtered = filtered.filter((recipe) => recipe.mealType === filters.mealType);
+            if (filters.mealtyp) {
+                filtered = filtered.filter((recipe) => recipe.mealtyp === filters.mealtyp);
+            }
+
+            // Filter nach lvl
+            if (filters.lvl) {
+                filtered = filtered.filter((recipe) => recipe.lvl === filters.lvl);
             }
 
             setFilteredRecipes(filtered);
@@ -77,8 +82,10 @@ function Rezepte() {
                                         img={recipe.imageUrl}
                                         name={recipe.name}
                                         time={recipe.time}
-                                        category={recipe.ingredients.split(', ').map((category, index) => (
-                                            <li key={index}>{category}</li>
+                                        category={Array.isArray(recipe.categories) ? recipe.categories.map((categories, index) => (
+                                            <li key={index}>{categories}</li>
+                                        )) : recipe.categories.split(', ').map((categories, index) => (
+                                            <li key={index}>{categories}</li>
                                         ))}
                                     />
                                 </div>
