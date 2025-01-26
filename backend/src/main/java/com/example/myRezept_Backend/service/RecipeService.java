@@ -32,9 +32,9 @@ public class RecipeService {
             // Stelle sicher, dass der Uploads-Ordner existiert
             ensureUploadsFolderExists();
 
-            // Bild lokal speichern
+            // Bild lokal speichern (Pfad anpassen, um es im "uploads"-Ordner im Root-Verzeichnis zu speichern)
             String filename = image.getOriginalFilename();
-            File file = new File("uploads/" + filename);
+            File file = new File("uploads/" + filename);  // Pfad zum Uploads-Ordner im Root-Verzeichnis
             image.transferTo(file);
 
             // Gebe die URL des gespeicherten Bildes zurück
@@ -44,6 +44,8 @@ public class RecipeService {
         }
         return imageUrl;
     }
+
+
 
     //Ptüfen ob der Uploads Ordener existiert und wenn nicht anlegen
     private void ensureUploadsFolderExists() {
