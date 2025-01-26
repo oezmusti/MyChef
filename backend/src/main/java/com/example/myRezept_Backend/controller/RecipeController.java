@@ -84,4 +84,11 @@ public class RecipeController {
         List<Recipe> recipes = recipeService.searchRecipes(query);
         return new ResponseEntity<>(recipes, HttpStatus.OK);
     }
+
+    // GET: random Rezept
+    @GetMapping("/random")
+    public ResponseEntity<Recipe> getRandomRecipe() {
+        Recipe randomRecipe = recipeService.getRandomRecipe();
+        return ResponseEntity.ok(randomRecipe);
+    }
 }

@@ -10,6 +10,7 @@ import org.bson.types.ObjectId;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class RecipeService {
@@ -66,5 +67,15 @@ public class RecipeService {
     public List<Recipe> searchRecipes(String query) {
         return recipeRepository.findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCaseOrIngredientsContainingIgnoreCaseOrCategoriesContainingIgnoreCaseOrTimeContainingIgnoreCaseOrMealtypContaining(
                 query, query, query, query, query, query);
+    }
+
+    // Random Rezept
+    public Recipe getRandomRecipe() {
+        List<Recipe> recipes = recipeRepository.findAll();
+        if (recipes.isEmpty()) {
+            return null;
+        }
+        Random random = new Random();
+        return recipes.get(random.nextInt(recipes.size()));
     }
 }
