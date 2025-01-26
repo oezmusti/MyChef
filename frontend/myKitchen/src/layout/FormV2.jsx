@@ -175,7 +175,7 @@ function FormV2() {
                     <div className="relative h-full">
                         <div className='grid grid-cols-2 gap-5 mb-3'>
                             <div>
-                                {/* Kategorie */}
+                                {/* Schwierigkeit */}
                                 <div className='flex flex-col col-span-3 mb-4'>
                                     <label className='pb-2' htmlFor="lvl"> Aufwand </label>
                                     <select
@@ -216,7 +216,7 @@ function FormV2() {
                                     <label className='pb-2' htmlFor="time"> Dauer</label>
                                     <input
                                         className='block border border-gold-500 focus:border focus:border-gold-700 rounded-md h-8'
-                                        type="time"
+                                        type="text"
                                         id="time"
                                         name='time'
                                         value={formData.time}
@@ -294,6 +294,7 @@ function FormV2() {
                 return (
                     <div className="relative h-full">
                         <div className='grid grid-cols-3 gap-5 mb-3'>
+                            {/* Qunatity */}
                             <div className='mb-4 col-span-1'>
                                 <label className='pb-2' htmlFor="ingredients"> Menge* </label>
                                 <textarea
@@ -304,6 +305,8 @@ function FormV2() {
                                     onChange={handleInputChange}
                                 ></textarea>
                             </div>
+
+                            {/* Ingrediants */}
                             <div className='mb-4 col-span-2'>
                                 <label className='pb-2' htmlFor="ingredients"> Zutaten* </label>
                                 <textarea

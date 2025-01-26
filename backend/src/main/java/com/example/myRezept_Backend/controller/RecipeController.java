@@ -105,4 +105,50 @@ public class RecipeController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    // PUT-Methode: Rezept aktualisieren
+    @PutMapping("/{id}")
+    public ResponseEntity<Recipe> updateRecipe(@PathVariable String id, @RequestParam(value = "image", required = false) MultipartFile image, @RequestParam("data") String data) {
+        try {
+            // Konvertiere die String-ID in einen ObjectId
+            ObjectId objectId = new ObjectId(id);
+
+            // Rezept aus der DB abrufen
+            Recipe existingRecipe = recipeService.findById(objectId);
+            if (existingRecipe == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
+            // JSON in Rezept-Objekt umwandeln
+            ObjectMapper objectMapper = new ObjectMapper();
+            Recipe updatedRecipe = objectMapper.readValue(data, Recipe.class);
+
+            // Nur geänderte Felder aktualisieren
+            if (updatedRecipe.getName() != null) existingRecipe.setName(updatedRecipe.getName());
+            if (updatedRecipe.getDescription() != null) existingRecipe.setDescription(updatedRecipe.getDescription());
+            if (updatedRecipe.getLvl() != null) existingRecipe.setLvl(updatedRecipe.getLvl());
+            if (updatedRecipe.getMealtyp() != null) existingRecipe.setMealtyp(updatedRecipe.getMealtyp());
+            if (updatedRecipe.getTime() != null) existingRecipe.setTime(updatedRecipe.getTime());
+            if (updatedRecipe.getCategories() != null) existingRecipe.setCategories(updatedRecipe.getCategories());
+            if (updatedRecipe.getIngredients() != null) existingRecipe.setIngredients(updatedRecipe.getIngredients());
+            if (updatedRecipe.getQuantity() != null) existingRecipe.setQuantity(updatedRecipe.getQuantity());
+            if (updatedRecipe.getSteps() != null) existingRecipe.setSteps(updatedRecipe.getSteps());
+            if (updatedRecipe.getPublisher() != null) existingRecipe.setPublisher(updatedRecipe.getPublisher());
+            if (updatedRecipe.isPublics() != existingRecipe.isPublics()) existingRecipe.setPublics(updatedRecipe.isPublics());
+
+            // Wenn ein neues Bild hochgeladen wurde, speichern
+            if (!image.isEmpty()) {
+                String imageUrl = recipeService.saveImage(image);
+                existingRecipe.setImageUrl(imageUrl);
+            }
+
+            // Rezept speichern
+            Recipe savedRecipe = recipeService.saveRecipe(existingRecipe);
+
+            return new ResponseEntity<>(savedRecipe, HttpStatus.OK);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 }
