@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../layout/header';
+import Header from '../layout/Header';
 import Footer from '../layout/footer';
 import {useNavigate} from "react-router-dom";
 
