@@ -146,4 +146,11 @@ public class RecipeController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    // GET: random Rezept
+    @GetMapping("/random")
+    public ResponseEntity<Recipe> getRandomRecipe() {
+        Recipe randomRecipe = recipeService.getRandomRecipe();
+        return ResponseEntity.ok(randomRecipe);
+    }
 }

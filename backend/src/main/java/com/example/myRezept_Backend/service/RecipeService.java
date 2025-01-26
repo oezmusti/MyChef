@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class RecipeService {
@@ -176,4 +177,14 @@ public class RecipeService {
     //         }
     //     }
     // }
+
+    // Random Rezept
+    public Recipe getRandomRecipe() {
+        List<Recipe> recipes = recipeRepository.findAll();
+        if (recipes.isEmpty()) {
+            return null;
+        }
+        Random random = new Random();
+        return recipes.get(random.nextInt(recipes.size()));
+    }
 }
