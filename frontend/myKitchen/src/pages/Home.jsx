@@ -4,7 +4,7 @@ import Footer from '../layout/footer';
 import RezepteKachel from '../layout/RezeptKachel';
 import HeroSlider from '../layout/HeroSlider';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import MyChefHero from '../layout/MyChefHero';
 // Swiper Styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -17,6 +17,7 @@ function Home() {
     return (
         <>
             <Header />
+            <MyChefHero />
             <Swiper
                 centeredSlides={true}
                 autoplay={{

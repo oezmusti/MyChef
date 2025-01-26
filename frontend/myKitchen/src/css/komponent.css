@@ -244,3 +244,34 @@
     color: darkred;
     background-color: #f0f0f0;
 }
+
+/* MyChefHero */
+.MC-Container {
+    width: 100vw;
+    height: 80vh;
+    background: white;
+}
+
+.MC-flex {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.MC-left-side {
+    width: 50%;
+    height: 100%;
+}
+
+.MC-eight-side {
+    width: 50%;
+    height: 100%;
+}
+
+.MC-img-container {
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    align-items: center;
+    height: 100%;
+}

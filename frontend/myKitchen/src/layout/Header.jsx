@@ -32,32 +32,31 @@ function Header() {
                             <img className='h-[25px ]' src="/icons/burger.svg" alt="Burger Menu" />
                         </div>
                     </div>
-                    <div className="w-[130px] md:w-[200px] flex items-center justify-center h-full">
+                    <div className='hidden sm:block'>
+                        <div className="w-[130px] md:w-[200px] flex items-center justify-center h-full">
 
-                        {/* Searchbar */}
-                        <form onSubmit={handleSearchSubmit}>
-                            <label htmlFor="default-search" className="sr-only">Search</label>
-                            <div className="relative">
-                                <input
-                                    type="search"
-                                    id="default-search"
-                                    className="block w-96 h-[40px] p-4 ps-10 text-sm text-gray-900 border border-gold-300 rounded-lg"
-                                    placeholder="Suche..."
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)} // Eingabe verwalten
-                                    required
-                                />
-                                <button
-                                    type="submit"
-                                    className="text-[#FFF] absolute end-2.5 bottom-1.5 bg-gold-200 hover:bg-gold-300 font-medium rounded-lg text-sm px-2 py-1"
-                                >
-                                    Search
-                                </button>
-                            </div>
-                        </form>
-
-                        {/* <Filter /> */}
-
+                            {/* Searchbar */}
+                            <form onSubmit={handleSearchSubmit}>
+                                <label htmlFor="default-search" className="sr-only">Search</label>
+                                <div className="relative">
+                                    <input
+                                        type="search"
+                                        id="default-search"
+                                        className="block w-96 h-[40px] p-4 ps-10 text-sm text-gray-900 border border-gold-300 rounded-lg"
+                                        placeholder="Suche..."
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)} // Eingabe verwalten
+                                        required
+                                    />
+                                    <button
+                                        type="submit"
+                                        className="text-[#FFF] absolute end-2.5 bottom-1.5 bg-gold-200 hover:bg-gold-300 font-medium rounded-lg text-sm px-2 py-1"
+                                    >
+                                        Search
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div className="flex items-center gap-3 h-full">
                         <a href='/register' className='text-gold-500 '>
@@ -77,6 +76,32 @@ function Header() {
                     {/* Close-Icon mit onClick für das Menü-Toggle */}
                     <div onClick={toggleNav} className="w-auto h-auto cursor-pointer">
                         <img className="px-8 pt-8" src="/icons/close.svg" alt="close" />
+                    </div>
+                    <div className='pl-4 mt-5 block sm:hidden'>
+                        <div className="w-full flex items-center justify-center h-full">
+
+                            {/* Searchbar */}
+                            <form onSubmit={handleSearchSubmit}>
+                                <label htmlFor="default-search" className="sr-only">Search</label>
+                                <div className="relative">
+                                    <input
+                                        type="search"
+                                        id="default-search"
+                                        className="block  h-[40px] p-4 ps-10 text-sm text-gray-900 border border-gold-300 rounded-lg"
+                                        placeholder="Suche..."
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)} // Eingabe verwalten
+                                        required
+                                    />
+                                    <button
+                                        type="submit"
+                                        className="text-[#FFF] absolute end-2.5 bottom-1.5 bg-gold-200 hover:bg-gold-300 font-medium rounded-lg text-sm px-2 py-1"
+                                    >
+                                        Search
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div className="h-auto w-full mt-8">
                         <a href="/">
@@ -109,14 +134,6 @@ function Header() {
                                     <img className="h-[25px] w-auto" src="/icons/icon-world.svg" alt="Globaler Bereich Icon" />
                                 </div>
                                 <div>Globaler Bereich</div>
-                            </div>
-                        </a>
-                        <a href="liked">
-                            <div className="w-full py-6 pl-8 hover:bg-[#52796F] transition-all duration-300 ease-in-out flex gap-4">
-                                <div className="h-[25px] w-[30px]">
-                                    <img className="h-[25px] w-auto" src="/icons/icon-like.svg" alt="Geleikte Rezepte Icon" />
-                                </div>
-                                <div>Geleikte Rezepte</div>
                             </div>
                         </a>
                     </div>
