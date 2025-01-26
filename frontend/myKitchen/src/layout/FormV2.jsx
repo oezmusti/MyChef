@@ -82,8 +82,15 @@ function FormV2() {
         const formDataToSend = new FormData();
 
         // Bilddatei hinzufügen (falls vorhanden)
+        // if (formData.image) {
+        //     formDataToSend.append('image', formData.image);
+        // }
         if (formData.image) {
-            formDataToSend.append('image', formData.image);
+            const uniqueFilename = `${Date.now()}_${formData.image.name}`;
+            const uniqueFile = new File([formData.image], uniqueFilename, {
+                type: formData.image.type
+            });
+            formDataToSend.append('image', uniqueFile);
         }
 
         // Restliche Formulardaten als JSON hinzufügen

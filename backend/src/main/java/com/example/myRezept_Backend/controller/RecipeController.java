@@ -51,32 +51,27 @@ public class RecipeController {
     // POST-Methode: Neues Rezept erstellen
     @PostMapping
     public ResponseEntity<Recipe> createRecipe(
-            @RequestParam("image") MultipartFile image,
-            @RequestParam("data") String data) {
+        @RequestParam("image") MultipartFile image,
+        @RequestParam("data") String data) {
 
-        try {
-            // JSON in Recipe-Objekt umwandeln
-            ObjectMapper objectMapper = new ObjectMapper();
-            Recipe recipe = objectMapper.readValue(data, Recipe.class);
+    try {
+        // JSON in Recipe-Objekt umwandeln
+        ObjectMapper objectMapper = new ObjectMapper();
+        Recipe recipe = objectMapper.readValue(data, Recipe.class);
 
-            // Bild speichern und die URL setzen
-            String imageUrl = recipeService.saveImage(image);
-            recipe.setImageUrl(imageUrl);
+        // Bild im Backend-Verzeichnis speichern und URL setzen
+        String imageUrl = recipeService.saveImageToProjectFolder(image);
+        recipe.setImageUrl(imageUrl);
 
-            // Rezept speichern
-            Recipe savedRecipe = recipeService.saveRecipe(recipe);
+        // Rezept speichern
+        Recipe savedRecipe = recipeService.saveRecipe(recipe);
 
-            return new ResponseEntity<>(savedRecipe, HttpStatus.CREATED);
-        } catch (IOException e) {
-            // Fehler beim Parsen der JSON-Daten
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        } catch (Exception e) {
-            // Allgemeine Fehlerbehandlung
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return new ResponseEntity<>(savedRecipe, HttpStatus.CREATED);
+    } catch (IOException e) {
+        e.printStackTrace();
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+}
 
     // GET: Rezepte durchsuchen
     @GetMapping("/search")
