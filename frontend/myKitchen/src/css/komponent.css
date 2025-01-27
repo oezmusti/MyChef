@@ -255,7 +255,9 @@
 .MC-flex {
     display: flex;
     flex-direction: row;
+    gap: 32px;
     width: 100%;
+    height: 80vh;
 }
 
 .MC-left-side {
@@ -263,8 +265,12 @@
     height: 100%;
 }
 
-.MC-eight-side {
+.MC-reight-side {
     width: 50%;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    align-items: center;
     height: 100%;
 }
 
@@ -274,4 +280,33 @@
     place-items: center;
     align-items: center;
     height: 100%;
+}
+
+@media only screen and (max-width: 655px) {
+    .MC-Container {
+        width: 100vw;
+        height: 100%;
+        background: white;
+    }
+
+    .MC-flex {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+
+    .MC-left-side {
+        width: 100%;
+        height: 100%;
+    }
+
+    .MC-reight-side {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        place-items: center;
+        align-items: center;
+        height: 100%;
+    }
 }
