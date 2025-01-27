@@ -4,7 +4,7 @@ import '../css/komponent.css';
 import '../css/fonts.css';
 
 function RezepteKacheltext({ id, img, name, publisher, description, time, lvl, mealtyp, categories, ingredients, steps }) {
-    //User bekommen 
+    //User bekommen
     const [username, setUsername] = useState('');
 
     useEffect(() => {
@@ -44,6 +44,7 @@ function RezepteKacheltext({ id, img, name, publisher, description, time, lvl, m
 
     const [isLiked, setIsLiked] = useState(false);
     const [menuVisible, setMenuVisible] = useState(false);
+    const [imgError, setImgError] = useState(false);
 
     const handleLikeClick = () => {
         setIsLiked(!isLiked);
@@ -56,6 +57,8 @@ function RezepteKacheltext({ id, img, name, publisher, description, time, lvl, m
     const closeMenu = () => {
         setMenuVisible(false);
     };
+
+    const baseUrl = 'http://localhost:8080';
 
     function handleDelete() {
         fetch(`http://localhost:8080/api/recipes/${id}`, {
@@ -83,6 +86,15 @@ function RezepteKacheltext({ id, img, name, publisher, description, time, lvl, m
             <div className="relative">
                 <Link to={`/detail/${id}`} >
                     <img className="w-full object-cover h-52 rounded-tr-xl rounded-tl-xl" src={img} alt={name} />
+                    {/*<img*/}
+                    {/*    className="w-full object-cover h-52 rounded-tr-xl rounded-tl-xl"*/}
+                    {/*    src={!imgError ? `${img}` : '/image-placeholder.jpg'}*/}
+                    {/*    alt={name}*/}
+                    {/*    onError={(e) => {*/}
+                    {/*        setImgError(true);*/}
+                    {/*        console.log('Bildfehler für:', img);*/}
+                    {/*    }}*/}
+                    {/*/>*/}
                 </Link>
                 {publisher === username && (
                     <div className="absolute top-2 right-2">
