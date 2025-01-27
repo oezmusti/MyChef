@@ -7,6 +7,12 @@
     --color-accente: #bbb389;
 }
 
+body {
+    background-image: url('/assets/backgrounds/Hintergrund_holz.png');
+    background-size: cover;
+    mask-repeat: no-repeat;
+}
+
 .content {
     padding-left: 40px;
     padding-right: 40px;
@@ -26,6 +32,15 @@
     color: var(--text-title, #2F2F2F);
     font-family: 'Work-Sans';
     font-size: var(--h1, 48px);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.hl-1-small {
+    color: var(--text-title, #2F2F2F);
+    font-family: 'Work-Sans';
+    font-size: var(--h1, 40px);
     font-style: normal;
     font-weight: 700;
     line-height: 120%;
@@ -119,6 +134,19 @@
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: var(--color-accente);
+    border-radius: 9999px;
+    font-family: 'Roboto';
+}
+
+.secondary-buton {
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: var(--color-accente);
+    border: 1px solid var(--color-accente);
+    background-color: transparent;
     border-radius: 9999px;
     font-family: 'Roboto';
 }

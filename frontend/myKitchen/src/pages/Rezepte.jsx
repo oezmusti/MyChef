@@ -3,8 +3,50 @@ import Header from '../layout/header';
 import Footer from '../layout/footer';
 import RezepteKacheltext from '../layout/RezeptKacheltext';
 import Filter from '../layout/Filter';
+import Userabfrage from '../layout/Userabfrage';
 
 function Rezepte() {
+    //User bekommen 
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const token = localStorage.getItem('userToken');
+
+
+            if (!token) {
+                setError("token not found");
+                return;
+            }
+            try {
+                const response = await fetch('http://localhost:8080/api/users/me', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (response.ok) {
+                    //const data = await response.json();
+                    const text = await response.text();
+                    if (text) {
+                        const data = JSON.parse(text);
+                        setUsername(data.username);
+                    } else {
+                        console.error("Leere antwort erhalten...")
+                    }
+                    //setUsername(data.username);
+                } else {
+                    console.error('Benutzerdaten konnten nicht geladen werden.');
+                }
+            } catch (error) {
+                console.error('Fehler beim Laden der Benutzerdaten:', error);
+            }
+        };
+        fetchUserData()
+    }, []);
+
     const [recipes, setRecipes] = useState([]);
     const [filteredRecipes, setFilteredRecipes] = useState([]);
     const [filters, setFilters] = useState({
@@ -12,6 +54,8 @@ function Rezepte() {
         mealtyp: '',
         lvl: ''
     });
+
+    <Userabfrage />
 
     useEffect(() => {
         fetch('http://localhost:8080/api/recipes')
@@ -32,6 +76,11 @@ function Rezepte() {
         // Filterlogik anwenden
         const applyFilters = () => {
             let filtered = recipes;
+
+            // Filter nach Publisher (Benutzername)
+            if (username) {
+                filtered = filtered.filter((recipe) => recipe.publisher === username);
+            }
 
             // Filter nach Kategorien
             if (filters.categories.length > 0) {
@@ -54,7 +103,7 @@ function Rezepte() {
         };
 
         applyFilters();
-    }, [filters, recipes]);
+    }, [filters, recipes, username]);
 
     const handleFilterChange = (newFilters) => {
         setFilters(newFilters);
@@ -82,6 +131,7 @@ function Rezepte() {
                                         img={recipe.imageUrl}
                                         name={recipe.name}
                                         time={recipe.time}
+                                        publisher={recipe.publisher}
                                         category={Array.isArray(recipe.categories) ? recipe.categories.map((categories, index) => (
                                             <li key={index}>{categories}</li>
                                         )) : recipe.categories.split(', ').map((categories, index) => (

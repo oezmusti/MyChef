@@ -6,6 +6,47 @@ import RezepteKacheltext from '../layout/RezeptKacheltext';
 import Filter from '../layout/Filter';
 
 function Search() {
+    //User bekommen 
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const token = localStorage.getItem('userToken');
+
+
+            if (!token) {
+                setError("token not found");
+                return;
+            }
+            try {
+                const response = await fetch('http://localhost:8080/api/users/me', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (response.ok) {
+                    //const data = await response.json();
+                    const text = await response.text();
+                    if (text) {
+                        const data = JSON.parse(text);
+                        setUsername(data.username);
+                    } else {
+                        console.error("Leere antwort erhalten...")
+                    }
+                    //setUsername(data.username);
+                } else {
+                    console.error('Benutzerdaten konnten nicht geladen werden.');
+                }
+            } catch (error) {
+                console.error('Fehler beim Laden der Benutzerdaten:', error);
+            }
+        };
+        fetchUserData()
+    }, []);
+
     const { searchTerm } = useParams(); // Suchbegriff aus URL
     const [recipes, setRecipes] = useState([]); // State für die Suchergebnisse
     const [loading, setLoading] = useState(true); // Ladezustand
@@ -13,7 +54,8 @@ function Search() {
     const [filters, setFilters] = useState({
         categories: [],
         mealtyp: '',
-        lvl: ''
+        lvl: '',
+        publics: true
     });
 
     useEffect(() => {
@@ -42,6 +84,11 @@ function Search() {
         const applyFilters = () => {
             let filtered = recipes;
 
+            // Filter nach Publics (nur öffentliche Rezepte) oder Publisher (Benutzername)
+            filtered = filtered.filter((recipe) =>
+                recipe.publics === true || recipe.publisher === username
+            );
+
             // Filter nach Kategorien
             if (filters.categories.length > 0) {
                 filtered = filtered.filter((recipe) =>
@@ -63,7 +110,8 @@ function Search() {
         };
 
         applyFilters();
-    }, [filters, recipes]);
+    }, [filters, recipes, username]);
+
 
     const handleFilterChange = (newFilters) => {
         setFilters(newFilters);
@@ -92,6 +140,7 @@ function Search() {
                                         id={recipe.id}
                                         img={recipe.imageUrl}
                                         name={recipe.name}
+                                        publisher={recipe.publisher}
                                         time={recipe.time}
                                         category={recipe.ingredients.split(', ').map((category, index) => (
                                             <li key={index}>{category}</li>

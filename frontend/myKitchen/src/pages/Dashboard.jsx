@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../layout/header';
 import Footer from '../layout/footer';
 import RecipeOfTheDay from '../layout/RecipeOfTheDay';
@@ -45,13 +45,13 @@ function Dashboard() {
     }, []);
     return (
         <>
-        <Header />
-        <div className="p-6">
-            <h1 className="text-2xl font-bold text-gold-400">Herzlich Willkommen, {username}!</h1>
-            <p>Hier kommen weitere Dashboard-inhalte hin. Unter anderem ein Rezept des Tages, welches jeden Tag wechselt. Auch könnte man hier die favorisierten Rezepte unterbrignen</p>
-            <RecipeOfTheDay />
-        </div>
-        <Footer />
+            <Header />
+            <div className="p-6">
+                <h1 className="text-2xl font-bold text-gold-400">Herzlich Willkommen, {username}!</h1>
+                <p>Hier kommen weitere Dashboard-inhalte hin. Unter anderem ein Rezept des Tages, welches jeden Tag wechselt. Auch könnte man hier die favorisierten Rezepte unterbrignen</p>
+                <RecipeOfTheDay />
+            </div>
+            <Footer />
         </>
     );
 }

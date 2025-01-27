@@ -20,7 +20,7 @@ function Header() {
         const token = localStorage.getItem('userToken');
         setIsLoggedIn(!!token);
     }, []);
-    
+
     const handleLogout = () => {
         localStorage.removeItem('userToken');
         setIsLoggedIn(false);
@@ -36,7 +36,7 @@ function Header() {
 
     return (
         <>
-            <header className="relative shadow-lg px-3 py-2 h-[60px]">
+            <header className="sticky top-0 shadow-lg px-3 py-2 h-[60px] bg-white z-[200]">
                 <nav className="flex justify-between items-center h-full">
                     <div className="flex items-center gap-3">
                         {/* Burger-Icon mit onClick für das Menü-Toggle */}
@@ -77,8 +77,8 @@ function Header() {
                         <a href='/login' className="border border-spacing-2 border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-[#FFF] px-5 py-2 rounded-full">
                             Login
                         </a> */}
-                        
-                        {isLoggedIn ? ( 
+
+                        {isLoggedIn ? (
                             <button onClick={handleLogout} className="border border-spacing-2 border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-[#FFF] px-5 py-2 rounded-full">
                                 Logout
                             </button>
@@ -98,7 +98,7 @@ function Header() {
                 {/* Seitennavigation */}
                 <div
                     id="side-nav"
-                    className={`absolute top-0 z-50 min-h-screen w-full max-w-72 bg-[#83B799] ${isNavOpen ? 'side-on' : 'side-off'}`}
+                    className={`fixed top-0 z-50 min-h-screen w-full max-w-72 bg-white  shadow-xl ${isNavOpen ? 'side-on' : 'side-off'}`}
                 >
                     {/* Close-Icon mit onClick für das Menü-Toggle */}
                     <div onClick={toggleNav} className="w-auto h-auto cursor-pointer">
@@ -132,45 +132,63 @@ function Header() {
                     </div>
                     <div className="h-auto w-full mt-8">
                         <a href="/">
-                            <div className="w-full py-6 pl-8 hover:bg-[#52796F] transition-all duration-300 ease-in-out flex gap-4">
+                            <div className="w-full py-6 pl-8 hover:bg-[#afafaf] transition-all duration-300 ease-in-out flex gap-4">
                                 <div className="h-[25px] w-[30px]">
                                     <img className="h-[25px] w-auto" src="/icons/home.svg" alt="Hinzufügen Icon" />
                                 </div>
                                 <div>Home</div>
                             </div>
                         </a>
-                        <a href="/add-rezept">
-                            <div className="w-full py-6 pl-8 hover:bg-[#52796F] transition-all duration-300 ease-in-out flex gap-4">
-                                <div className="h-[25px] w-[30px]">
-                                    <img className="h-[25px] w-auto" src="/icons/icon-add.svg" alt="Hinzufügen Icon" />
+                        {isLoggedIn ? (
+                            <>
+                                <a href="/add-rezept">
+                                    <div className="w-full py-6 pl-8 hover:bg-[#afafaf] transition-all duration-300 ease-in-out flex gap-4">
+                                        <div className="h-[25px] w-[30px]">
+                                            <img className="h-[25px] w-auto" src="/icons/icon-add.svg" alt="Hinzufügen Icon" />
+                                        </div>
+                                        <div>Rezept Hinzufügen</div>
+                                    </div>
+                                </a>
+                                <a href="/rezepte">
+                                    <div className="w-full py-6 pl-8 hover:bg-[#afafaf] transition-all duration-300 ease-in-out flex gap-4">
+                                        <div className="h-[25px] w-[30px]">
+                                            <img className="h-[25px] w-auto" src="/icons/icon-book.svg" alt="Meine Rezepte Icon" />
+                                        </div>
+                                        <div>Meine Rezepte</div>
+                                    </div>
+                                </a>
+                            </>
+                        ) : (
+                            <>
+                                <div>
+
                                 </div>
-                                <div>Rezept Hinzufügen</div>
-                            </div>
-                        </a>
-                        <a href="/rezepte">
-                            <div className="w-full py-6 pl-8 hover:bg-[#52796F] transition-all duration-300 ease-in-out flex gap-4">
-                                <div className="h-[25px] w-[30px]">
-                                    <img className="h-[25px] w-auto" src="/icons/icon-book.svg" alt="Meine Rezepte Icon" />
-                                </div>
-                                <div>Meine Rezepte</div>
-                            </div>
-                        </a>
+                            </>
+                        )}
                         <a href="global-feed">
-                            <div className="w-full py-6 pl-8 hover:bg-[#52796F] transition-all duration-300 ease-in-out flex gap-4">
+                            <div className="w-full py-6 pl-8 hover:bg-[#afafaf] transition-all duration-300 ease-in-out flex gap-4">
                                 <div className="h-[25px] w-[30px]">
                                     <img className="h-[25px] w-auto" src="/icons/icon-world.svg" alt="Globaler Bereich Icon" />
                                 </div>
                                 <div>Globaler Bereich</div>
                             </div>
                         </a>
-                        <a href="liked">
-                            <div className="w-full py-6 pl-8 hover:bg-[#52796F] transition-all duration-300 ease-in-out flex gap-4">
-                                <div className="h-[25px] w-[30px]">
-                                    <img className="h-[25px] w-auto" src="/icons/icon-like.svg" alt="Favorisierte Rezepte Icon" />
+                    </div>
+                    <div>
+                        {isLoggedIn ? (
+                            <div></div>
+                        ) : (
+                            <>
+                                <div className='flex flex-col absolute bottom-9 button-pos'>
+                                    <a href='/register' className='button primary-buton'>
+                                        Jetzt registrieren
+                                    </a>
+                                    <a href='/login' className='button secondary-buton'>
+                                        Login
+                                    </a>
                                 </div>
-                                <div>Favorisierte Rezepte</div>
-                            </div>
-                        </a>
+                            </>
+                        )}
                     </div>
                 </div>
             </header >

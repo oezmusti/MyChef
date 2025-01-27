@@ -1,9 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/komponent.css';
 import '../css/fonts.css';
 
-function RezepteKacheltext({ id, img, name, description, time, lvl, mealtyp, categories, ingredients, steps }) {
+function RezepteKacheltext({ id, img, name, publisher, description, time, lvl, mealtyp, categories, ingredients, steps }) {
+    //User bekommen 
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const token = localStorage.getItem('userToken');
+
+            if (!token) {
+                setError("token not found");
+                return;
+            }
+            try {
+                const response = await fetch('http://localhost:8080/api/users/me', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (response.ok) {
+                    const text = await response.text();
+                    if (text) {
+                        const data = JSON.parse(text);
+                        setUsername(data.username);
+                    } else {
+                        console.error("Leere antwort erhalten...");
+                    }
+                } else {
+                    console.error('Benutzerdaten konnten nicht geladen werden.');
+                }
+            } catch (error) {
+                console.error('Fehler beim Laden der Benutzerdaten:', error);
+            }
+        };
+        fetchUserData();
+    }, []);
+
     const [isLiked, setIsLiked] = useState(false);
     const [menuVisible, setMenuVisible] = useState(false);
 
@@ -36,14 +74,17 @@ function RezepteKacheltext({ id, img, name, description, time, lvl, mealtyp, cat
             });
     }
 
+    console.log('Publisher' + publisher);
+    console.log('username' + username);
+
     return (
-        <>
-            <div className="w-72 h-72 bg-white rounded-xl shadow-lg relative">
-                {/* Bild und Menü */}
-                <div className="relative">
-                    <Link to={`/detail/${id}`} >
-                        <img className="w-full object-cover h-52 rounded-tr-xl rounded-tl-xl" src={img} alt={name} />
-                    </Link>
+        <div className="w-72 h-72 bg-white rounded-xl shadow-lg relative">
+            {/* Bild und Menü */}
+            <div className="relative">
+                <Link to={`/detail/${id}`} >
+                    <img className="w-full object-cover h-52 rounded-tr-xl rounded-tl-xl" src={img} alt={name} />
+                </Link>
+                {publisher === username && (
                     <div className="absolute top-2 right-2">
                         <div onClick={toggleMenu} className="cursor-pointer">
                             <svg
@@ -71,38 +112,38 @@ function RezepteKacheltext({ id, img, name, description, time, lvl, mealtyp, cat
                             </div>
                         )}
                     </div>
-                </div>
+                )}
+            </div>
 
-                {/* Rezeptinformationen */}
-                <div className="px-4 py-2 recepi-headline">
-                    <div>{name}</div>
-                </div>
-                <div className="flex px-4 justify-between w-full font-Roboto">
-                    <div>{time} min</div>
-                    <div className="flex space-x-2">
-                        {/* Statische Überprüfung der Kategorien */}
-                        {categories?.includes('Vollkost') && (
-                            <img src="/icons/meat.png" alt="Vollkost" title="Vollkost" className="w-6 h-6" />
-                        )}
-                        {categories?.includes('Vegi') && (
-                            <img src="/icons/vegi.png" alt="Vegi" title="Vegi" className="w-6 h-6" />
-                        )}
-                        {categories?.includes('Vegan') && (
-                            <img src="/icons/vegan.png" alt="Vegan" title="Vegan" className="w-6 h-6" />
-                        )}
-                        {categories?.includes('lowcarb') && (
-                            <img src="/icons/low-carb.png" alt="Low Carb" title="Low Carb" className="w-6 h-6" />
-                        )}
-                        {categories?.includes('glutenfrei') && (
-                            <img src="/icons/gluten-frei.png" alt="Glutenfrei" title="Glutenfrei" className="w-6 h-6" />
-                        )}
-                    </div>
-                </div>
-                <div>
-                    {categories?.join(', ')}
+            {/* Rezeptinformationen */}
+            <div className="px-4 py-2 recepi-headline">
+                <div>{name}</div>
+            </div>
+            <div className="flex px-4 justify-between w-full font-Roboto">
+                <div>{time} min</div>
+                <div className="flex space-x-2">
+                    {/* Statische Überprüfung der Kategorien */}
+                    {categories?.includes('Vollkost') && (
+                        <img src="/icons/meat.png" alt="Vollkost" title="Vollkost" className="w-6 h-6" />
+                    )}
+                    {categories?.includes('Vegi') && (
+                        <img src="/icons/vegi.png" alt="Vegi" title="Vegi" className="w-6 h-6" />
+                    )}
+                    {categories?.includes('Vegan') && (
+                        <img src="/icons/vegan.png" alt="Vegan" title="Vegan" className="w-6 h-6" />
+                    )}
+                    {categories?.includes('lowcarb') && (
+                        <img src="/icons/low-carb.png" alt="Low Carb" title="Low Carb" className="w-6 h-6" />
+                    )}
+                    {categories?.includes('glutenfrei') && (
+                        <img src="/icons/gluten-frei.png" alt="Glutenfrei" title="Glutenfrei" className="w-6 h-6" />
+                    )}
                 </div>
             </div>
-        </>
+            <div>
+                {categories?.join(', ')}
+            </div>
+        </div>
     );
 }
 

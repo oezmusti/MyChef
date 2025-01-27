@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Header from '../layout/Header';
 import Footer from '../layout/footer';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LogIn() {
     const [email, setEmail] = useState('');
@@ -30,7 +29,7 @@ function LogIn() {
                 setSuccessMessage('Login erfolgreich!'); // Zeige Erfolgsnachricht
                 setErrorMessage(''); // Lösche Fehlernachricht
                 localStorage.setItem('userToken', data.token); // Speichern des JWT im LS
-                console.log('Benutzer-Token:', data.token); 
+                console.log('Benutzer-Token:', data.token);
                 navigate('/dashboard');
             } else {
                 const errorData = await response.json();

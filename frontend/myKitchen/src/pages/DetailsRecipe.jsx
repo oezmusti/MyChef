@@ -66,6 +66,7 @@ function DetailsRecipe() {
                 <div className='recipe-description'>
                     <div>{recipe.description}</div>
                 </div>
+                <p>Publisher: {recipe.publisher}</p>
                 <p>Zubereitungszeit: {recipe.time} Minuten</p>
                 <p>Kategorien: {recipe.categories.join(', ')}</p>
                 <p>Nahlzeit: {recipe.mealtyp}</p>

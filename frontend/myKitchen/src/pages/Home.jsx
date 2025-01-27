@@ -5,6 +5,7 @@ import RezepteKachel from '../layout/RezeptKachel';
 import HeroSlider from '../layout/HeroSlider';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import MyChefHero from '../layout/MyChefHero';
+import Introduction from '../layout/Introduction';
 // Swiper Styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -18,6 +19,10 @@ function Home() {
         <>
             <Header />
             <MyChefHero />
+            <Introduction />
+            <div className='w-screen bg-white h-auto pt-16 pb-16'>
+                <div className='hl-1-small text-center'>So könnte es dann <span className='hl-accente'> aussehen ... </span></div>
+            </div>
             <Swiper
                 centeredSlides={true}
                 autoplay={{
@@ -63,18 +68,14 @@ function Home() {
                     />
                 </SwiperSlide>
             </Swiper>
-            <div className='content'>
-                <div className='headline'>
-                    Favoriten
-                </div>
-                <div className='slider'>
-                    <div className='flex flex-row gap-8'>
-                        <RezepteKachel />
-                        <RezepteKachel />
-                        <RezepteKachel />
-                        <RezepteKachel />
-                        <RezepteKachel />
-                        <RezepteKachel />
+            <div className='w-screen bg-white h-auto pt-16 pb-16'>
+                <div className='content'>
+                    <div className='hl-1-small'>Dr <span className='hl-accente'> gefällt </span> was du siehst?</div>
+                    <div className='hl-2'>Dann hör auf zu warten <span className='hl-accente'>... </span> </div>
+                    <div className='primary-button'>
+                        <a href="/register" className='button primary-buton'>
+                            Jetzt Regisstrieren
+                        </a>
                     </div>
                 </div>
             </div>
