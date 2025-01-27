@@ -10,7 +10,7 @@ function MyChefHero() {
                     <div className='MC-flex'>
                         <div className='MC-left-side'>
                             <div className='MC-img-container'>
-                                <img src="\MyChef_Transparent_Logo.png" alt="" className="MC-img-inner" />
+                                <img src="\MyChef_Logo.png" alt="MyChef Logo" className="MC-img-inner" />
                             </div>
                         </div>
                         <div className='MC-reight-side'>

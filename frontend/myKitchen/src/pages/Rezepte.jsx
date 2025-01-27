@@ -114,7 +114,7 @@ function Rezepte() {
             <Header />
             <div className='content'>
                 <div className='headline'>
-                    Meine Rezepte
+                    Meine Rezepte {username}
                 </div>
                 <div className='mb-5'>
                     <Filter onFilterChange={handleFilterChange} />

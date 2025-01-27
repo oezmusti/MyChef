@@ -10,19 +10,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        String projectPath = System.getProperty("user.dir");
-        System.out.println("Serving uploads from: " + projectPath + "/uploads/");
-        
+        // Statische Ressourcen aus dem Ordner "uploads" bereitstellen
         registry.addResourceHandler("/uploads/**")
-                .addResourceLocations("file:" + projectPath + "/uploads/");
-    }
-
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-            .allowedOrigins("http://localhost:5173")
-            .allowedMethods("GET", "POST", "PUT", "DELETE")
-            .allowedHeaders("*")
-            .allowCredentials(true);
+                .addResourceLocations("file:" + System.getProperty("user.dir") + "/uploads/");
     }
 }
