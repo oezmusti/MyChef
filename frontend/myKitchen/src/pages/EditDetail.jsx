@@ -13,7 +13,6 @@ function EditDetail() {
     const [error, setError] = useState(null);
 
     const [formData, setFormData] = useState({
-        image: null,
         name: '',
         description: '',
         lvl: '',
@@ -25,8 +24,6 @@ function EditDetail() {
         steps: '',
         quantity: '',
     });
-
-    const [imagePreview, setImagePreview] = useState(null);
 
     useEffect(() => {
         fetch(`http://localhost:8080/api/recipes/${id}`)
@@ -41,7 +38,6 @@ function EditDetail() {
                     ...data,
                     categories: data.categories || [],
                     publics: data.publics || false,
-                    image: null,
                 });
                 setLoading(false);
             })
@@ -50,18 +46,6 @@ function EditDetail() {
                 setLoading(false);
             });
     }, [id]);
-
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result);
-            };
-            reader.readAsDataURL(file);
-            setFormData({ ...formData, image: file });
-        }
-    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -89,9 +73,6 @@ function EditDetail() {
         e.preventDefault();
         const dataToSend = new FormData();
         dataToSend.append("data", JSON.stringify(formData));
-        if (formData.image) {
-            dataToSend.append("image", formData.image);
-        }
 
         try {
             const response = await fetch(`http://localhost:8080/api/recipes/${id}`, {
@@ -121,17 +102,6 @@ function EditDetail() {
             case 1:
                 return (
                     <div>
-                        <div className='mb-6'>
-                            <label htmlFor="imageUpload" className='block text-sm font-medium text-gray-700'></label>
-                            <input id="imageUpload" type="file" accept="image/*" onChange={handleImageChange} className='hidden' />
-                            <div className='cursor-pointer mt-4 w-[200px] h-[150px] border-2 border-dashed border-gold-500 rounded-lg flex items-center justify-center overflow-hidden bg-gray-100' onClick={() => document.getElementById('imageUpload').click()}>
-                                {imagePreview ? (
-                                    <img src={imagePreview} alt="Preview" className='w-full h-full object-cover' />
-                                ) : (
-                                    <span className='text-gray-500 text-center'>Klicken und Bild <br /> hochladen</span>
-                                )}
-                            </div>
-                        </div>
                         {/* Name */}
                         <div className='flex flex-col mb-4'>
                             <label className='pb-2' htmlFor="name"> Rezeptname*</label>

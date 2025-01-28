@@ -6,16 +6,21 @@ import Filter from '../layout/Filter';
 import Userabfrage from '../layout/Userabfrage';
 
 function Rezepte() {
-    //User bekommen 
     const [username, setUsername] = useState('');
+    const [recipes, setRecipes] = useState([]);
+    const [filteredRecipes, setFilteredRecipes] = useState([]);
+    const [filters, setFilters] = useState({
+        categories: [],
+        mealtyp: '',
+        lvl: ''
+    });
 
     useEffect(() => {
         const fetchUserData = async () => {
             const token = localStorage.getItem('userToken');
 
-
             if (!token) {
-                setError("token not found");
+                console.error("Token not found");
                 return;
             }
             try {
@@ -28,15 +33,13 @@ function Rezepte() {
                 });
 
                 if (response.ok) {
-                    //const data = await response.json();
                     const text = await response.text();
                     if (text) {
                         const data = JSON.parse(text);
                         setUsername(data.username);
                     } else {
-                        console.error("Leere antwort erhalten...")
+                        console.error("Leere Antwort erhalten...");
                     }
-                    //setUsername(data.username);
                 } else {
                     console.error('Benutzerdaten konnten nicht geladen werden.');
                 }
@@ -44,18 +47,8 @@ function Rezepte() {
                 console.error('Fehler beim Laden der Benutzerdaten:', error);
             }
         };
-        fetchUserData()
+        fetchUserData();
     }, []);
-
-    const [recipes, setRecipes] = useState([]);
-    const [filteredRecipes, setFilteredRecipes] = useState([]);
-    const [filters, setFilters] = useState({
-        categories: [],
-        mealtyp: '',
-        lvl: ''
-    });
-
-    <Userabfrage />
 
     useEffect(() => {
         fetch('http://localhost:8080/api/recipes')
@@ -67,34 +60,32 @@ function Rezepte() {
             })
             .then((data) => {
                 setRecipes(data);
-                setFilteredRecipes(data);
             })
             .catch((error) => console.error('Fehler beim Abrufen der Rezepte:', error));
     }, []);
 
     useEffect(() => {
-        // Filterlogik anwenden
         const applyFilters = () => {
             let filtered = recipes;
 
-            // Filter nach Publisher (Benutzername)
+            // ANzeigen der Rezepte des Users 
             if (username) {
                 filtered = filtered.filter((recipe) => recipe.publisher === username);
             }
 
-            // Filter nach Kategorien
+            // Categories filter 
             if (filters.categories.length > 0) {
                 filtered = filtered.filter((recipe) =>
                     filters.categories.some((category) => recipe.categories.includes(category))
                 );
             }
 
-            // Filter nach Mahlzeitentyp
+            //Mealtyp filter 
             if (filters.mealtyp) {
                 filtered = filtered.filter((recipe) => recipe.mealtyp === filters.mealtyp);
             }
 
-            // Filter nach lvl
+            //Lvl Filter 
             if (filters.lvl) {
                 filtered = filtered.filter((recipe) => recipe.lvl === filters.lvl);
             }
@@ -103,7 +94,7 @@ function Rezepte() {
         };
 
         applyFilters();
-    }, [filters, recipes, username]);
+    }, [username, filters, recipes]);
 
     const handleFilterChange = (newFilters) => {
         setFilters(newFilters);
@@ -114,7 +105,7 @@ function Rezepte() {
             <Header />
             <div className='content'>
                 <div className='headline'>
-                    Meine Rezepte {username}
+                    Meine Rezepte
                 </div>
                 <div className='mb-5'>
                     <Filter onFilterChange={handleFilterChange} />

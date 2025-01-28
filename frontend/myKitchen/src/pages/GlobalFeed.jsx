@@ -25,7 +25,7 @@ function GlobalFeed() {
             })
             .then((data) => {
                 setRecipes(data);
-                setFilteredRecipes(data);
+                //setFilteredRecipes(data);
             })
             .catch((error) => console.error('Fehler beim Abrufen der Rezepte:', error));
     }, []);
@@ -61,7 +61,7 @@ function GlobalFeed() {
         };
 
         applyFilters();
-    }, [filters, recipes]); // Keine Notwendigkeit für `publics` in der Abhängigkeitsliste
+    }, [filters, recipes]);
 
     const handleFilterChange = (newFilters) => {
         setFilters(newFilters);

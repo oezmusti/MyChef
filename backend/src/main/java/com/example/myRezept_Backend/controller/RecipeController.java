@@ -102,7 +102,7 @@ public class RecipeController {
 
     // PUT-Methode: Rezept aktualisieren
     @PutMapping("/{id}")
-    public ResponseEntity<Recipe> updateRecipe(@PathVariable String id, @RequestParam(value = "image", required = false) MultipartFile image, @RequestParam("data") String data) {
+    public ResponseEntity<Recipe> updateRecipe(@PathVariable String id, @RequestParam("data") String data) {
         try {
             // Konvertiere die String-ID in einen ObjectId
             ObjectId objectId = new ObjectId(id);
@@ -129,12 +129,6 @@ public class RecipeController {
             if (updatedRecipe.getSteps() != null) existingRecipe.setSteps(updatedRecipe.getSteps());
             if (updatedRecipe.getPublisher() != null) existingRecipe.setPublisher(updatedRecipe.getPublisher());
             if (updatedRecipe.isPublics() != existingRecipe.isPublics()) existingRecipe.setPublics(updatedRecipe.isPublics());
-
-            // Wenn ein neues Bild hochgeladen wurde, speichern
-            if (!image.isEmpty()) {
-                String imageUrl = recipeService.saveImage(image);
-                existingRecipe.setImageUrl(imageUrl);
-            }
 
             // Rezept speichern
             Recipe savedRecipe = recipeService.saveRecipe(existingRecipe);

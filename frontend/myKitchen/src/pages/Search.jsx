@@ -8,6 +8,16 @@ import Filter from '../layout/Filter';
 function Search() {
     //User bekommen 
     const [username, setUsername] = useState('');
+    const { searchTerm } = useParams(); // Suchbegriff aus URL
+    const [recipes, setRecipes] = useState([]); // State für die Suchergebnisse
+    const [loading, setLoading] = useState(true); // Ladezustand
+    const [filteredRecipes, setFilteredRecipes] = useState([]);
+    const [filters, setFilters] = useState({
+        categories: [],
+        mealtyp: '',
+        lvl: '',
+        publics: true
+    });
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -46,17 +56,6 @@ function Search() {
         };
         fetchUserData()
     }, []);
-
-    const { searchTerm } = useParams(); // Suchbegriff aus URL
-    const [recipes, setRecipes] = useState([]); // State für die Suchergebnisse
-    const [loading, setLoading] = useState(true); // Ladezustand
-    const [filteredRecipes, setFilteredRecipes] = useState([]);
-    const [filters, setFilters] = useState({
-        categories: [],
-        mealtyp: '',
-        lvl: '',
-        publics: true
-    });
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -110,7 +109,7 @@ function Search() {
         };
 
         applyFilters();
-    }, [filters, recipes, username]);
+    }, [username, filters, recipes]);
 
 
     const handleFilterChange = (newFilters) => {

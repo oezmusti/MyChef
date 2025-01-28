@@ -173,12 +173,21 @@
 .recipe-headline {
     font-size: 45px;
     font-family: 'Work-SaNS';
-    line-height: 100px;
+}
+
+.recipe-description-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .recipe-description {
-    font-size: 18px;
+    font-size: 16px;
     font-family: 'Roboto';
+}
+
+.recipe-description-headline {
+    font-size: 24px;
+    font-family: 'Work-SaNS';
 }
 
 .recipe-subheadline {
@@ -397,4 +406,8 @@
 .container .box:hover {
     box-shadow: 0px 0px 20px 1px #ffbb763f;
     border: 1px solid rgba(255, 255, 255, 0.454);
+}
+
+.DetailBackground {
+    background-color: white;
 }

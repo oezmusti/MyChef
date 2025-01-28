@@ -55,21 +55,22 @@ function DetailsRecipe() {
     return (
         <>
             <Header />
-            <div className='content'>
+            <div className='content DetailBackground'>
                 <div className='rd-img-container'>
                     <img className='rd-img-inner' src={recipe.imageUrl} alt={recipe.name} />
                 </div>
                 <div>
-                    <h1 className='recipe-headline'>{recipe.name}</h1>
+                    <div className='recipe-headline'>{recipe.name}</div>
+                    <div>von {recipe.publisher}</div>
                 </div>
-                <div className='recipe-description'>
-                    <div>{recipe.description}</div>
+                <div className='recipe-description-container'>
+                    <div className="recipe-description-headline">Beschreibung: </div>
+                    <div className='recipe-description'>{recipe.description}</div>
                 </div>
-                <p>Publisher: {recipe.publisher}</p>
-                <p>Zubereitungszeit: {recipe.time} Minuten</p>
-                <p>Kategorien: {recipe.categories.join(', ')}</p>
-                <p>Nahlzeit: {recipe.mealtyp}</p>
-                <p>Lvl: {recipe.lvl}</p>
+                <p><span className='hl-accente '>Zubereitungszeit:</span> {recipe.time} Minuten</p>
+                <p><span className='hl-accente '>Kategorien: </span> {recipe.categories.join(', ')}</p>
+                <p><span className='hl-accente '>Mahlzeit: </span> {recipe.mealtyp}</p>
+                <p><span className='hl-accente '> Schwierigkeit: </span>{recipe.lvl}</p>
                 <div className='flex-two '>
                     <div className='flex-two-left-7'>
                         <div className='recipe-subheadline'>
@@ -110,10 +111,6 @@ function DetailsRecipe() {
                 </div>
                 <p>Zubereitung:</p>
                 <p>{recipe.steps}</p>
-                <div>
-                    {/* Löschen Button */}
-                    <button onClick={handleDelete} className="delete-button">Rezept löschen</button>
-                </div>
             </div>
             <Footer />
         </>
