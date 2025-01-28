@@ -70,7 +70,7 @@ function Home() {
             </Swiper>
             <div className='w-screen bg-white h-auto pt-16 pb-16'>
                 <div className='content'>
-                    <div className='hl-1-small'>Dr <span className='hl-accente'> gefällt </span> was du siehst?</div>
+                    <div className='hl-1-small'>Dir <span className='hl-accente'> gefällt </span> was du siehst?</div>
                     <div className='hl-2'>Dann hör auf zu warten <span className='hl-accente'>... </span> </div>
                     <div className='primary-button'>
                         <a href="/register" className='button primary-buton'>

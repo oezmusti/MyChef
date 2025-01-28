@@ -108,7 +108,7 @@ function Filter({ onFilterChange }) {
                         {/* Mahlzeitentyp */}
                         <div className="flex flex-col mb-4">
                             <label className="pb-2" htmlFor="lvl">
-                                Tagesmahlzeiten
+                                Schwierigkeit
                             </label>
                             <select
                                 className="block border border-gold-500 focus:border focus:border-gold-700 rounded-md h-8"

@@ -86,15 +86,6 @@ function RezepteKacheltext({ id, img, name, publisher, description, time, lvl, m
             <div className="relative">
                 <Link to={`/detail/${id}`} >
                     <img className="w-full object-cover h-52 rounded-tr-xl rounded-tl-xl" src={img} alt={name} />
-                    {/*<img*/}
-                    {/*    className="w-full object-cover h-52 rounded-tr-xl rounded-tl-xl"*/}
-                    {/*    src={!imgError ? `${img}` : '/image-placeholder.jpg'}*/}
-                    {/*    alt={name}*/}
-                    {/*    onError={(e) => {*/}
-                    {/*        setImgError(true);*/}
-                    {/*        console.log('Bildfehler für:', img);*/}
-                    {/*    }}*/}
-                    {/*/>*/}
                 </Link>
                 {publisher === username && (
                     <div className="absolute top-2 right-2">
@@ -132,24 +123,9 @@ function RezepteKacheltext({ id, img, name, publisher, description, time, lvl, m
                 <div>{name}</div>
             </div>
             <div className="flex px-4 justify-between w-full font-Roboto">
-                <div>{time} min</div>
-                <div className="flex space-x-2">
-                    {/* Statische Überprüfung der Kategorien */}
-                    {categories?.includes('Vollkost') && (
-                        <img src="/icons/meat.png" alt="Vollkost" title="Vollkost" className="w-6 h-6" />
-                    )}
-                    {categories?.includes('Vegi') && (
-                        <img src="/icons/vegi.png" alt="Vegi" title="Vegi" className="w-6 h-6" />
-                    )}
-                    {categories?.includes('Vegan') && (
-                        <img src="/icons/vegan.png" alt="Vegan" title="Vegan" className="w-6 h-6" />
-                    )}
-                    {categories?.includes('lowcarb') && (
-                        <img src="/icons/low-carb.png" alt="Low Carb" title="Low Carb" className="w-6 h-6" />
-                    )}
-                    {categories?.includes('glutenfrei') && (
-                        <img src="/icons/gluten-frei.png" alt="Glutenfrei" title="Glutenfrei" className="w-6 h-6" />
-                    )}
+                <div className='flex gap-2'>
+                    <img src="\icons\time.svg" alt="Zubereitungszeit" title="Zubereitungszeit" className="w-6 h-6" />
+                    <div>{time} min</div>
                 </div>
             </div>
             <div>
