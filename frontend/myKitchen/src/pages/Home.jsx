@@ -21,7 +21,7 @@ function Home() {
             <MyChefHero />
             <Introduction />
             <div className='w-screen bg-white h-auto pt-16 pb-16'>
-                <div className='hl-1-small text-center'>So könnte es dann <span className='hl-accente'> aussehen ... </span></div>
+                <div className='hl-1-small text-center'>So könnte deine nächste <span className='hl-accente'> Mahlzeit </span><span className='hl-1-small text-center'>aussehen ... </span></div>
             </div>
             <Swiper
                 centeredSlides={true}

@@ -26,7 +26,7 @@ function Introduction() {
                     </div>
                     <h1 className="font-bold text-xl">Speichern und Anzeigen von Rezepten</h1>
                     <p className="text-sm text-zinc-500 leading-6">
-                        Nutzer haben die Möglichkeit, ihre persönlichen Rezepte in der App zu speichern. Dabei können sie neben dem Titel auch Zutatenlisten, Zubereitungsschritte und Bilder hinzufügen, um die Rezepte übersichtlich zu dokumentieren. Ein benutzerfreundliches Interface sorgt dafür, dass die eingegebenen Informationen klar strukturiert dargestellt werden. Alle gespeicherten Rezepte sind jederzeit über eine persönliche Sammlung einsehbar, sodass Nutzer ihre Lieblingsrezepte schnell wiederfinden können.
+                        Du hast die Möglichkeit, deine persönlichen Rezepte in der App zu speichern. Du kannst neben dem Titel auch Zutatenlisten, Zubereitungsschritte und Bilder hinzufügen, um die Rezepte übersichtlich zu dokumentieren. Ein benutzerfreundliches Interface sorgt dafür, dass die eingegebenen Informationen klar strukturiert dargestellt werden. Alle deine Rezepte sind jederzeit über deine persönliche Sammlung einsehbar, sodass du deine Lieblingsrezepte schnell wiederfinden kannst.
                     </p>
                 </div>
             </div>
@@ -54,7 +54,7 @@ function Introduction() {
                         </div>
                         <h1 className="font-bold text-xl">Verwalten von Rezepten</h1>
                         <p className="text-sm text-zinc-500 leading-6">
-                            Die App bietet umfassende Verwaltungsfunktionen für die gespeicherten Rezepte. Nutzer können bestehende Rezepte bearbeiten, falls sie Änderungen vornehmen möchten, oder sie dauerhaft löschen, wenn sie nicht mehr benötigt werden. Eine besondere Funktion ist die Möglichkeit, Rezepte als PDF zu exportieren. Dadurch können Nutzer ihre Rezepte einfach ausdrucken oder digital mit Freunden und Familie teilen. Diese Verwaltungstools ermöglichen eine flexible und personalisierte Nutzung der App.
+                            Die App bietet umfassende Verwaltungsfunktionen für deine gespeicherten Rezepte. Du kannst deine bestehenden Rezepte bearbeiten, falls du Änderungen vornehmen möchtest, oder sie dauerhaft löschen, wenn sie nicht mehr benötigt werden. Diese Verwaltungstools ermöglichen dir eine flexible und personalisierte Nutzung der App.
                         </p>
                     </div>
                 </div>
@@ -79,9 +79,9 @@ function Introduction() {
                             ></path>
                         </svg>
                     </div>
-                    <h1 className="font-bold text-xl">Globaler Feed für Inspiration</h1>
+                    <h1 className="font-bold text-xl">Globaler Feed zur Inspiration</h1>
                     <p className="text-sm text-zinc-500 leading-6">
-                        Der globale Feed ist eine zentrale Anlaufstelle für alle Nutzer, die auf der Suche nach neuen Rezeptideen sind. Hier können Nutzer ihre eigenen Rezepte öffentlich teilen und sich gleichzeitig von den Kreationen anderer inspirieren lassen. Der Feed bietet die Möglichkeit, Rezepte zu bewerten, Kommentare zu hinterlassen und interessante Beiträge zu speichern. So entsteht eine lebendige Community, in der sich Menschen mit ähnlichen Interessen austauschen können, während sie neue Gerichte entdecken.
+                        Der globale Feed ist eine zentrale Anlaufstelle für alle Nutzer, die auf der Suche nach neuen Rezeptideen sind. Hier kannst du deine eigenen Rezepte öffentlich teilen und dich gleichzeitig von den Kreationen anderer inspirieren lassen. So entsteht eine lebendige Community, in der du deine Rezepte mit anderen austauschen kannst und du neue Gerichte entdecken kannst.
                     </p>
                 </div>
             </div>
@@ -109,7 +109,7 @@ function Introduction() {
                         </div>
                         <h1 className="font-bold text-xl">Intelligente Such- und Filterfunktionen</h1>
                         <p className="text-sm text-zinc-500 leading-6">
-                            Damit Nutzer schnell die passenden Rezepte finden, verfügt die App über eine leistungsstarke Such- und Filterfunktion. Rezepte können anhand von Schlüsselwörtern, Zutaten oder Kategorien wie „vegan“ oder „glutenfrei“ durchsucht werden. Ergänzend dazu stehen Filteroptionen wie Zubereitungszeit, Schwierigkeitsgrad oder Kalorienzahl zur Verfügung. Diese Funktionen stellen sicher, dass Nutzer auch in einer großen Rezeptdatenbank immer genau das finden, was sie suchen.
+                            Damit du schnell die passenden Rezepte findest, verfügt die App über eine leistungsstarke Such- und Filterfunktion. Rezepte können anhand von Schlüsselwörtern, Zutaten oder Kategorien wie „vegan“ oder „glutenfrei“ durchsucht werden. Ergänzend dazu stehen Filteroptionen wie Zubereitungszeit oder Schwierigkeitsgrad zur Verfügung. Diese Funktionen stellen sicher, dass du, auch in einer großen Rezeptdatenbank, immer genau das findest, was du suchst.
                         </p>
                     </div>
                 </div>
