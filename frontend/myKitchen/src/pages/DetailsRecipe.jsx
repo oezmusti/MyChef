@@ -27,7 +27,6 @@ function DetailsRecipe() {
             });
     }, [id]);
 
-
     function handleDelete() {
         fetch(`http://localhost:8080/api/recipes/${id}`, {
             method: 'DELETE',

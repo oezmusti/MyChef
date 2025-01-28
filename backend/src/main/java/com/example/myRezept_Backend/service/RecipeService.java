@@ -8,8 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.bson.types.ObjectId;
 import java.time.Instant;
 import java.util.UUID;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,9 +16,7 @@ import java.util.Random;
 
 @Service
 public class RecipeService {
-
-    // private static final Logger logger = LoggerFactory.getLogger(RecipeService.class);
-    private static final String UPLOADS_FOLDER = "/frontend/myKitchen/public/uploads";
+    private static final String UPLOADS_FOLDER = "frontend/myKitchen/public/uploads";
 
     @Autowired
     private RecipeRepository recipeRepository;
@@ -57,18 +53,13 @@ public class RecipeService {
 
         // Eindeutiger Dateiname mit Zeitstempel und UUID
         String uniqueFilename = Instant.now().getEpochSecond() + "_" + UUID.randomUUID() + extension;
-        //logger.info("Generierter Dateiname: " + uniqueFilename);
 
         // Zielpfad erstellen
         File destinationFile = new File(UPLOADS_FOLDER, uniqueFilename);
 
         // Datei speichern
         image.transferTo(destinationFile);
-        // logger.info("Bild erfolgreich gespeichert: " + destinationFile.getAbsolutePath());
 
-        // URL zurückgeben
-        // String baseUrl = "http://localhost:8080"; // Passe die Base-URL an deine Konfiguration an
-        // return baseUrl + "/uploads/" + uniqueFilename;
         return UPLOADS_FOLDER + "/" + uniqueFilename;
     }
 
@@ -76,11 +67,7 @@ public class RecipeService {
         File folder = new File(uploadDir);
         if (!folder.exists()) {
             boolean created = folder.mkdirs();
-//            if (created) {
-//                logger.info("Uploads-Ordner wurde erfolgreich erstellt: " + uploadDir);
-//            } else {
-//                logger.error("Fehler beim Erstellen des Uploads-Ordners.");
-//            }
+
         }
     }
 
@@ -103,26 +90,30 @@ public class RecipeService {
         return false;
     }
     public String saveImageToProjectFolder(MultipartFile image) {
-        String imageUrl = null;
         try {
             // Absoluten Pfad des Projekts ermitteln
             String projectPath = System.getProperty("user.dir"); // Pfad des Projektverzeichnisses
-            String uploadDir = projectPath + "/uploads"; // Zielverzeichnis
+            String uploadDir = projectPath + File.separator + UPLOADS_FOLDER;
+            File uploadsFolder = new File(uploadDir);
 
-            // Sicherstellen, dass der Ordner existiert
-            ensureUploadsFolderExists(uploadDir);
+            if (!uploadsFolder.exists()) {
+                uploadsFolder.mkdirs();
+            }
+
+            String originFilename = image.getOriginalFilename();
+            String fileExtension = originFilename.substring(originFilename.lastIndexOf("."));
+            String uniqueFilename = UUID.randomUUID().toString() + fileExtension;
+
+            File destinationFile = new File(uploadDir + File.separator + uniqueFilename);
 
             // Bilddatei speichern
-            String filename = image.getOriginalFilename();
-            File destinationFile = new File(uploadDir, filename);
             image.transferTo(destinationFile);
 
             // Rückgabe der relativen URL
-            imageUrl = destinationFile.toString();
+            return "/uploads/" + uniqueFilename;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Fehler beim Speichern des Bildes", e);
         }
-        return imageUrl;
     }
 
     // Random Rezept

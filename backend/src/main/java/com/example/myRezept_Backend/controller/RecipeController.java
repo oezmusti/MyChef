@@ -68,8 +68,7 @@ public class RecipeController {
 
         return new ResponseEntity<>(savedRecipe, HttpStatus.CREATED);
     } catch (IOException e) {
-        e.printStackTrace();
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 
