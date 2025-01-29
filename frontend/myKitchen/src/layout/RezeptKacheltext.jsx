@@ -85,8 +85,8 @@ function RezepteKacheltext({ id, img, name, publisher, description, time, lvl, m
             {/* Bild und Menü */}
             <div className="relative">
                 <Link to={`/detail/${id}`} >
-                    <img className="w-full object-cover h-52 rounded-tr-xl rounded-tl-xl"  src={img ? `data:image/jpeg;base64,${img}` : '/image-placeholder.jpg'}
-    onError={(e) => e.target.src = '/image-placeholder.jpg'} alt={name} />
+                    <img className="w-full object-cover h-52 rounded-tr-xl rounded-tl-xl" src={img ? `data:image/jpeg;base64,${img}` : '/image-placeholder.jpg'}
+                        onError={(e) => e.target.src = '/image-placeholder.jpg'} alt={name} />
                 </Link>
                 {publisher === username && (
                     <div className="absolute top-2 right-2">
@@ -111,7 +111,6 @@ function RezepteKacheltext({ id, img, name, publisher, description, time, lvl, m
                                 onMouseLeave={closeMenu}
                             >
                                 <ul className="text-black font-Roboto p-2">
-                                    <li className="recipe-li p-1 hover:bg-gray-200 cursor-pointer">Ansehen</li>
                                     <Link to={`/edit/${id}`} ><li className="recipe-li p-1 hover:bg-gray-200 cursor-pointer">Bearbeiten</li></Link>
                                     <li onClick={handleDelete} className="recipe-li p-1 hover:bg-gray-200 cursor-pointer delete">Löschen</li>
                                 </ul>
