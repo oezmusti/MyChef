@@ -86,7 +86,7 @@ function EditDetail() {
 
             const result = await response.json();
             console.log("Rezept aktualisiert: ", result);
-            navigate(`/recipes/${id}`);
+            navigate(`/detail/${id}`);
         } catch (error) {
             console.error("Fehler beim Aktualisieren des Rezepts: ", error);
         }
