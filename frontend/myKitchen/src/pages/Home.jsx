@@ -74,7 +74,7 @@ function Home() {
                     <div className='hl-2'>Dann hör auf zu warten <span className='hl-accente'>... </span> </div>
                     <div className='primary-button'>
                         <a href="/register" className='button primary-buton'>
-                            Jetzt Regisstrieren
+                            Jetzt Registrieren
                         </a>
                     </div>
                 </div>

@@ -21,7 +21,7 @@ function MyChefHero() {
                                 </div>
                                 <div className='primary-button'>
                                     <a href="/register" className='button primary-buton'>
-                                        Jetzt Regisstrieren
+                                        Jetzt Registrieren
                                     </a>
                                 </div>
                             </div>

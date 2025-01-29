@@ -55,7 +55,7 @@ function Header() {
                                         type="search"
                                         id="default-search"
                                         className="block w-96 h-[40px] p-4 ps-10 text-sm text-gray-900 border border-gold-300 rounded-lg"
-                                        placeholder="Suche..."
+                                        placeholder="Döner Deluxe"
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)} // Eingabe verwalten
                                         required
@@ -64,7 +64,7 @@ function Header() {
                                         type="submit"
                                         className="text-[#FFF] absolute end-2.5 bottom-1.5 bg-gold-200 hover:bg-gold-300 font-medium rounded-lg text-sm px-2 py-1"
                                     >
-                                        Search
+                                        Suche
                                     </button>
                                 </div>
                             </form>
