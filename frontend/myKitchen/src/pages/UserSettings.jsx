@@ -1,56 +1,92 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../layout/header';
 import Footer from '../layout/footer';
-import RezepteKacheltext from '../layout/RezeptKacheltext';
+import { useParams } from 'react-router-dom';
 
-function UserSettings() {
-    // Die Recipes-Komponente sollte außerhalb von UserSettings definiert sein oder direkt in die Render-Logik integriert werden.
-    const [recipes, setRecipes] = useState([]);
+function DetailsRecipe() {
+    const { id } = useParams(); // ID aus URL holen
+    const [recipe, setRecipe] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Daten von der API abrufen
-        fetch('http://localhost:8080/api/recipes')
+        fetch(`http://localhost:8080/api/recipes/${id}`)
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error('Fehler beim Abrufen der Rezepte');
+                    throw new Error('Fehler beim Laden des Rezepts');
                 }
                 return response.json();
             })
-            .then((data) => setRecipes(data))
-            .catch((error) => console.error('Fehler beim Abrufen der Rezepte:', error));
-    }, []);
+            .then((data) => {
+                setRecipe(data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                setError(error.message);
+                setLoading(false);
+            });
+    }, [id]);
+
+    function handlePrint() {
+        window.print();
+    }
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>Error: {error}</p>;
+    }
 
     return (
         <>
-            <Header /> {/* Optional: Header-Komponente */}
-            <div className='content'>
-                <div className='headline'>
-                    Meine Rezepte
+            <div className='content DetailBackground'>
+
+                <div className='ExportImg-Container'>
+                    <img className='ExportImage' src="\MyChef_Logo.png" alt="Logo" />
                 </div>
-                <div className='recipe-conainer'>
-                    <div className='recipe-conainer-inner'>
-                        {recipes.length === 0 ? (
-                            <p>Keine Rezepte verfügbar.</p>
-                        ) : (
-                            recipes.map((recipe) => (
-                                <RezepteKacheltext
-                                    key={recipe.id}
-                                    id={recipe.id}
-                                    img={recipe.imageUrl}
-                                    name={recipe.name}
-                                    time={recipe.time}
-                                    category={recipe.ingredients.split(', ').map((category, index) => (
-                                        <li key={index}>{category}</li>
-                                    ))}
-                                />
-                            ))
-                        )}
+                <div>
+                    <div className='recipe-headline'>{recipe.name}</div>
+                </div>
+
+                <div className='recipe-subheadline'>Zutaten:</div>
+                <div className='recipe-ingrediantlist'>
+                    <div className='ingrediants'>
+                        <ul>
+                            {recipe.ingredients.split('; ').map((ingredient, index) => (
+                                <li className='ingredient-steps' key={index}>{ingredient}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className='quantitys'>
+                        <ul>
+                            {recipe.quantity.split('; ').map((quantity, index) => (
+                                <li className='ingredient-steps' key={index}>{quantity}</li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
+
+                <div className='recipe-subheadline'>
+                    Zubereitung
+                </div>
+                <ul>
+                    {recipe.steps.split(';').map((steps, index) => (
+                        <li className='steps-container' key={index}>
+                            <div className='steps'>
+                                Step {index + 1}
+                            </div>
+                            <div>
+                                {steps}
+                            </div>
+                        </li>
+                    ))}
+                </ul>
             </div>
-            <Footer />
+
         </>
     );
 }
 
-export default UserSettings;
+export default DetailsRecipe;

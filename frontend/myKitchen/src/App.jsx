@@ -15,7 +15,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 
 function App() {
   // Zustand für Logged-In User
-  
+
 
   return (
     <Router>
@@ -34,7 +34,7 @@ function App() {
         <Route path='/login' element={<LogIn />} />
         <Route path='/serch' element={<Search />} />
         <Route path='/serch/:searchTerm' element={<Search />} />
-        <Route path='/Settings' element={<UserSettings />} />
+        <Route path='/pdf/:id' element={<UserSettings />} />
         <Route path='/dashboard' element={<Dashboard />} />
       </Routes>
     </Router>

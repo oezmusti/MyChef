@@ -147,21 +147,33 @@ function DetailsRecipe() {
             });
     }, [id]);
 
-    function handleDelete() {
-        fetch(`http://localhost:8080/api/recipes/${id}`, {
-            method: 'DELETE',
-        })
-            .then((response) => {
-                if (response.ok) {
-                    window.location.href = '/';
-                } else {
-                    alert('Fehler beim Löschen des Rezepts!');
-                }
-            })
-            .catch((error) => {
-                console.error('Fehler:', error);
-                alert('Fehler beim Löschen des Rezepts!');
-            });
+    // function handleDelete() {
+    //     fetch(`http://localhost:8080/api/recipes/${id}`, {
+    //         method: 'DELETE',
+    //     })
+    //         .then((response) => {
+    //             if (response.ok) {
+    //                 window.location.href = '/';
+    //             } else {
+    //                 alert('Fehler beim Löschen des Rezepts!');
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.error('Fehler:', error);
+    //             alert('Fehler beim Löschen des Rezepts!');
+    //         });
+    // }
+
+    function handlePrint() {
+        const iframe = document.getElementById('printFrame');
+        if (iframe) {
+            iframe.src = `/pdf/${recipe.id}`;
+            iframe.onload = () => {
+                setTimeout(() => {
+                    iframe.contentWindow.print();
+                }, 200);
+            };
+        }
     }
 
     if (loading) {
@@ -202,10 +214,10 @@ function DetailsRecipe() {
                             Zubereitung
                         </div>
                         <ul>
-                            {recipe.steps.split(', ').map((steps, index) => (
+                            {recipe.steps.split(';').map((steps, index) => (
                                 <li className='steps-container' key={index}>
                                     <div className='steps'>
-                                        Steps {index + 1}
+                                        Step {index + 1}
                                     </div>
                                     <div>
                                         {steps}
@@ -219,14 +231,14 @@ function DetailsRecipe() {
                         <div className='recipe-ingrediantlist'>
                             <div className='ingrediants'>
                                 <ul>
-                                    {recipe.ingredients.split(', ').map((ingredient, index) => (
+                                    {recipe.ingredients.split('; ').map((ingredient, index) => (
                                         <li className='ingredient-steps' key={index}>{ingredient}</li>
                                     ))}
                                 </ul>
                             </div>
                             <div className='quantitys'>
                                 <ul>
-                                    {recipe.quantity.split(', ').map((quantity, index) => (
+                                    {recipe.quantity.split('; ').map((quantity, index) => (
                                         <li className='ingredient-steps' key={index}>{quantity}</li>
                                     ))}
                                 </ul>
@@ -234,10 +246,10 @@ function DetailsRecipe() {
                         </div>
                     </div>
                 </div>
-                <p>Zubereitung:</p>
-                <p>{recipe.steps}</p>
+                <button className='primary-buton' onClick={handlePrint}>Rezept Drucken</button>
             </div>
             <Footer />
+            <iframe id="printFrame" style={{ display: 'none' }} />
         </>
     );
 }

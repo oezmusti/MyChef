@@ -243,6 +243,7 @@ function EditDetail() {
                         <div className='mb-4 col-span-1'>
                             <label className='pb-2' htmlFor="ingredients"> Menge* </label>
                             <textarea
+                                placeholder='Bitte trenne die einzelnen Punkte mit einem Semikolon ( ; ), außer den letzten Eintrag.'
                                 className='mt-2 w-full h-64 block border border-gold-500 focus:border focus:border-gold-700 rounded-md'
                                 name="quantity"
                                 id="quantity"
@@ -254,6 +255,7 @@ function EditDetail() {
                         <div className='mb-4 col-span-2'>
                             <label className='pb-2' htmlFor="ingredients"> Zutaten* </label>
                             <textarea
+                                placeholder='Bitte trenne die einzelnen Punkte mit einem Semikolon ( ; ), außer den letzten Eintrag.'
                                 className='mt-2 w-full h-64 block border border-gold-500 focus:border focus:border-gold-700 rounded-md'
                                 name="ingredients"
                                 id="ingredients"
@@ -269,6 +271,7 @@ function EditDetail() {
                         <div className='mb-4'>
                             <label className='pb-2' htmlFor="steps"> Zubereitungsschritte* </label>
                             <textarea
+                                placeholder='Bitte trenne die einzelnen Punkte mit einem Semikolon ( ; ), außer den letzten Eintrag.'
                                 className='mt-2 w-full h-64 block border border-gold-500 focus:border focus:border-gold-700 rounded-md'
                                 name="steps"
                                 id="steps"

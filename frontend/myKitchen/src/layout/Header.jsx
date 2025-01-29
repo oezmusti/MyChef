@@ -165,7 +165,7 @@ function Header() {
                                 </div>
                             </>
                         )}
-                        <a href="global-feed">
+                        <a href="/global-feed">
                             <div className="w-full py-6 pl-8 hover:bg-[#afafaf] transition-all duration-300 ease-in-out flex gap-4">
                                 <div className="h-[25px] w-[30px]">
                                     <img className="h-[25px] w-auto" src="/icons/icon-world.svg" alt="Globaler Bereich Icon" />

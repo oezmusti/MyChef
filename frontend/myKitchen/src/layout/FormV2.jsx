@@ -6,8 +6,8 @@ function FormV2() {
     //User bekommen 
     const [username, setUsername] = useState('');
     const [imageBase64, setImageBase64] = useState(null);
-    const [recipeId, setRecipeId] = useState(null); 
-    
+    const [recipeId, setRecipeId] = useState(null);
+
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -88,7 +88,7 @@ function FormV2() {
                 alert('Bild ist zu groß. Maximale Größe ist 5MB.');
                 return;
             }
-            
+
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImagePreview(reader.result);
@@ -258,7 +258,7 @@ function FormV2() {
                         </div>
                     </div>
                 );
-                
+
             case 2:
                 return (
                     <div className="relative h-full">
@@ -387,6 +387,7 @@ function FormV2() {
                             <div className='mb-4 col-span-1'>
                                 <label className='pb-2' htmlFor="ingredients"> Menge* </label>
                                 <textarea
+                                    placeholder='Bitte trenne die einzelnen Punkte mit einem Semikolon ( ; ), außer den letzten Eintrag.'
                                     className='mt-2 w-full h-64 block border border-gold-500 focus:border focus:border-gold-700 rounded-md'
                                     name="quantity"
                                     id="quantity"
@@ -399,6 +400,7 @@ function FormV2() {
                             <div className='mb-4 col-span-2'>
                                 <label className='pb-2' htmlFor="ingredients"> Zutaten* </label>
                                 <textarea
+                                    placeholder='Bitte trenne die einzelnen Punkte mit einem Semikolon ( ; ), außer den letzten Eintrag.'
                                     className='mt-2 w-full h-64 block border border-gold-500 focus:border focus:border-gold-700 rounded-md'
                                     name="ingredients"
                                     id="ingredients"
@@ -422,6 +424,7 @@ function FormV2() {
                         <div className='mb-4'>
                             <label className='pb-2' htmlFor="steps"> Zubereitungsschritte* </label>
                             <textarea
+                                placeholder='Bitte trenne die einzelnen Punkte mit einem Semikolon ( ; ), außer den letzten Eintrag.'
                                 className='mt-2 w-full h-64 block border border-gold-500 focus:border focus:border-gold-700 rounded-md'
                                 name="steps"
                                 id="steps"

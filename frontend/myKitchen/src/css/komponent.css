@@ -411,3 +411,20 @@
 .DetailBackground {
     background-color: white;
 }
+
+/* PDF Generation */
+.ExportImg-Container {
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.ExportImage {
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    width: 100px;
+    height: auto;
+}

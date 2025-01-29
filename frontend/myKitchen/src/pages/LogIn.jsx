@@ -30,7 +30,7 @@ function LogIn() {
                 setErrorMessage(''); // Lösche Fehlernachricht
                 localStorage.setItem('userToken', data.token); // Speichern des JWT im LS
                 console.log('Benutzer-Token:', data.token);
-                navigate('/dashboard');
+                navigate('/');
             } else {
                 const errorData = await response.json();
                 setErrorMessage(errorData.message || 'Login fehlgeschlagen!');
