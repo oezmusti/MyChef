@@ -162,11 +162,11 @@ body {
 }
 
 .flex-two-left-7 {
-    width: 70%;
+    width: 60%;
 }
 
 .flex-two-right-3 {
-    width: 30%;
+    width: 40%;
 }
 
 @media only screen and (max-width: 756px) {

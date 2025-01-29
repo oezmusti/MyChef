@@ -207,12 +207,12 @@
 }
 
 .ingrediants {
-    width: 80%;
+    width: 60%;
 }
 
 .quantitys {
     text-align: right;
-    width: 20%;
+    width: 40%;
 }
 
 .ingredient-steps {

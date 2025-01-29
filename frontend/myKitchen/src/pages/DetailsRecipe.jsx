@@ -239,14 +239,14 @@ function DetailsRecipe() {
                         <div className='recipe-ingrediantlist'>
                             <div className='ingrediants'>
                                 <ul>
-                                    {recipe.ingredients.split('; ').map((ingredient, index) => (
+                                    {recipe.ingredients.split(';').map((ingredient, index) => (
                                         <li className='ingredient-steps' key={index}>{ingredient}</li>
                                     ))}
                                 </ul>
                             </div>
                             <div className='quantitys'>
                                 <ul>
-                                    {recipe.quantity.split('; ').map((quantity, index) => (
+                                    {recipe.quantity.split(';').map((quantity, index) => (
                                         <li className='ingredient-steps' key={index}>{quantity}</li>
                                     ))}
                                 </ul>
