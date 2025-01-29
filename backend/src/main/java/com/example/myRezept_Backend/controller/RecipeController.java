@@ -7,12 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bson.types.ObjectId;
 
 import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
 
 @RestController
@@ -49,44 +47,6 @@ public class RecipeController {
         }
     }
 
-
-    // POST-Methode: Neues Rezept erstellen
-//     @PostMapping
-//     public ResponseEntity<Recipe> createRecipe(
-//         @RequestParam("image") MultipartFile image,
-//         @RequestParam("data") String data) {
-
-//     try {
-//         // JSON in Recipe-Objekt umwandeln
-//         ObjectMapper objectMapper = new ObjectMapper();
-//         Recipe recipe = objectMapper.readValue(data, Recipe.class);
-
-//         // Bild im Backend-Verzeichnis speichern und URL setzen
-//         String imageUrl = recipeService.saveImageToProjectFolder(image);
-//         recipe.setImageUrl(imageUrl);
-
-//         // Rezept speichern
-//         Recipe savedRecipe = recipeService.saveRecipe(recipe);
-
-//         return new ResponseEntity<>(savedRecipe, HttpStatus.CREATED);
-//     } catch (IOException e) {
-//         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//     }
-// }
-// @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-//     public ResponseEntity<Recipe> createRecipe(@RequestPart("recipe") Recipe recipe,
-//                                              @RequestPart("image") MultipartFile image) {
-//         try {
-//             // Convert MultipartFile to Base64
-//             String base64Image = Base64.getEncoder().encodeToString(image.getBytes());
-//             recipe.setBase64Image(base64Image);
-            
-//             Recipe savedRecipe = recipeService.saveRecipe(recipe);
-//             return ResponseEntity.ok(savedRecipe);
-//         } catch (IOException e) {
-//             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//         }
-//     }
 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 public ResponseEntity<Recipe> createRecipe(@RequestBody Recipe recipe) {
     try {

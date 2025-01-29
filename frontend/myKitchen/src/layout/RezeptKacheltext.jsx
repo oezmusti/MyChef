@@ -85,21 +85,24 @@ function RezepteKacheltext({ id, img, name, publisher, description, time, lvl, m
             {/* Bild und Menü */}
             <div className="relative">
                 <Link to={`/detail/${id}`} >
-                    <img className="w-full object-cover h-52 rounded-tr-xl rounded-tl-xl" src={`data:image/jpeg;base64,${img}`} alt={name} />
+                    <img className="w-full object-cover h-52 rounded-tr-xl rounded-tl-xl"  src={img ? `data:image/jpeg;base64,${img}` : '/image-placeholder.jpg'}
+    onError={(e) => e.target.src = '/image-placeholder.jpg'} alt={name} />
                 </Link>
                 {publisher === username && (
                     <div className="absolute top-2 right-2">
                         <div onClick={toggleMenu} className="cursor-pointer">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="2"
-                                stroke="black"
-                                className="w-6 h-6"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 5h.01M12 12h.01M12 19h.01" />
-                            </svg>
+                            <div className="dotmenu-bg">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth="2"
+                                    stroke="black"
+                                    className="w-6 h-6"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 5h.01M12 12h.01M12 19h.01" />
+                                </svg>
+                            </div>
                         </div>
                         {menuVisible && (
                             <div

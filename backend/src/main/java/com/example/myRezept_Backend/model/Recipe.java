@@ -43,8 +43,6 @@ public class Recipe {
         this.ingredients = ingredients;
         this.quantity = quantity;
         this.steps = steps;
-
-        //this.imageUrl = imageUrl;
         this.base64Image = base64Image;
         this.publisher = publisher;
     }
@@ -99,10 +97,6 @@ public class Recipe {
         return steps;
     }
 
-    // public String getImageUrl() {
-    //     return imageUrl;
-    // }
-
     public String getPublisher() {
         return publisher;
     }
@@ -127,9 +121,6 @@ public class Recipe {
         this.steps = steps;
     }
 
-    // public void setImageUrl(String imageUrl) {
-    //     this.imageUrl = imageUrl;
-    // }
 
     // Kategorien Getter und Setter
     public List<String> getCategories() {

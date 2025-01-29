@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../layout/header';
 import Footer from '../layout/footer';
-import RezepteKachel from '../layout/RezeptKachel';
+
 import HeroSlider from '../layout/HeroSlider';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import MyChefHero from '../layout/MyChefHero';

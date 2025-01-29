@@ -7,6 +7,11 @@
     transform: translateX(-50%);
 }
 
+.dotmenu-bg {
+    background-color: white;
+    border-radius: 5px;
+}
+
 /* Hero Slider */
 .hero-container {
     width: 100%;

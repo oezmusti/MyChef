@@ -69,18 +69,6 @@ function FormV2() {
 
     const [imagePreview, setImagePreview] = useState(null);
 
-    // Handle file input change
-    // const handleImageChange = (e) => {
-    //     const file = e.target.files[0];
-    //     if (file) {
-    //         const reader = new FileReader();
-    //         reader.onloadend = () => {
-    //             setImagePreview(reader.result);
-    //         };
-    //         reader.readAsDataURL(file);
-    //         setFormData({ ...formData, image: file });
-    //     }
-    // };
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -92,10 +80,10 @@ function FormV2() {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImagePreview(reader.result);
-                setImageBase64(reader.result.split(',')[1]); // Store only the base64 data, not the data:image prefix
+                setImageBase64(reader.result.split(',')[1]);
             };
             reader.readAsDataURL(file);
-            setFormData({ ...formData, image: null }); // We don't need to store the file anymore
+            setFormData({ ...formData, image: null });
         }
     };
 
@@ -295,7 +283,7 @@ function FormV2() {
                                         <option value="fruehstueck">Frühstück</option>
                                         <option value="mittag">Mittagessen</option>
                                         <option value="abend">Abendessen</option>
-                                        <option value="deser">Deser</option>
+                                        <option value="deser">Dessert</option>
                                         <option value="snack">Snack</option>
                                     </select>
                                 </div>

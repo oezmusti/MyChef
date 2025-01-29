@@ -25,40 +25,24 @@ public class UserController {
     private JwtTokenProvider jwtTokenProvider;
 
 
-    @GetMapping  // Ändere dies von "/all" zu nur @GetMapping
+    @GetMapping
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     @PostMapping("/register")
     public User registerUser(@RequestBody User user) {
-        return userRepository.save(user); // Benutzer wird gespeichert
+        return userRepository.save(user);
     }
-
-    //@GetMapping("/all")
-    //public List<User> getAllUsers() {
-       // return userRepository.findAll(); // Alle Benutzer zurückgeben
-    //}
 
     @GetMapping("/{username}")
     public User getUserByUsername(@PathVariable String username) {
-        return userRepository.findByUsername(username); // Benutzer anhand des Benutzernamens finden
+        return userRepository.findByUsername(username);
     }
 
      @GetMapping("/me")
     public ResponseEntity<?> getCurrentUser(@RequestHeader("Authorization") String authHeader) {
-            // String token = authHeader.substring(7);
-            // String username = jwtTokenProvider.getUsernameFromToken(token);
-            // User user = userRepository.findByUsername(username);
 
-            // if (user == null) {
-            //     return ResponseEntity.notFound().build();
-            // }
-
-            // Map<String, String> response = new HashMap<>();
-            // response.put("username", user.getUsername());
-            // response.put("name", user.getName());
-            // return ResponseEntity.ok(response);
          final Logger logger = LoggerFactory.getLogger(UserController.class);
 
             try {

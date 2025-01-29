@@ -25,7 +25,7 @@ function GlobalFeed() {
             })
             .then((data) => {
                 setRecipes(data);
-                //setFilteredRecipes(data);
+
             })
             .catch((error) => console.error('Fehler beim Abrufen der Rezepte:', error));
     }, []);

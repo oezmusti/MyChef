@@ -25,7 +25,6 @@ function Dashboard() {
                 });
 
                 if (response.ok) {
-                    //const data = await response.json();
                     const text = await response.text();
                     if (text) {
                         const data = JSON.parse(text);
@@ -33,7 +32,6 @@ function Dashboard() {
                     } else {
                         console.error("Leere antwort erhalten...")
                     }
-                    //setUsername(data.username);
                 } else {
                     console.error('Benutzerdaten konnten nicht geladen werden.');
                 }

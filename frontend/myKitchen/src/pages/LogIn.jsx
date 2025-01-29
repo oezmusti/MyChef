@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Footer from '../layout/footer';
 import { useNavigate } from "react-router-dom";
 
 function LogIn() {
@@ -26,8 +25,8 @@ function LogIn() {
 
             if (response.ok) {
                 const data = await response.json();
-                setSuccessMessage('Login erfolgreich!'); // Zeige Erfolgsnachricht
-                setErrorMessage(''); // Lösche Fehlernachricht
+                setSuccessMessage('Login erfolgreich!');
+                setErrorMessage('');
                 localStorage.setItem('userToken', data.token); // Speichern des JWT im LS
                 console.log('Benutzer-Token:', data.token);
                 navigate('/');

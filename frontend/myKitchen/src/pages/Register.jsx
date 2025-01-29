@@ -11,7 +11,6 @@ function Register() {
     const handleRegister = async (event) => {
         event.preventDefault(); // Verhindert das Neuladen der Seite
 
-
         try {
 
             const role = 'User';
@@ -49,7 +48,6 @@ function Register() {
             setErrorMessage('Serverfehler. Bitte später erneut versuchen.');
             setSuccessMessage('');
         }
-
     };
 
     return (

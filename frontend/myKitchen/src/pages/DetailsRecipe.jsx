@@ -57,7 +57,11 @@
 //             <Header />
 //             <div className='content DetailBackground'>
 //                 <div className='rd-img-container'>
-//                     <img className='rd-img-inner' src={recipe.imageUrl} alt={recipe.name} />
+//                     <img
+//                         className='rd-img-inner'
+//                         src={`data:image/jpeg;base64,${recipe.base64Image}`}
+//                         alt={recipe.name}
+//                     />
 //                 </div>
 //                 <div>
 //                     <div className='recipe-headline'>{recipe.name}</div>
@@ -128,6 +132,7 @@ function DetailsRecipe() {
     const [recipe, setRecipe] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [imgSrc, setImgSrc] = useState('/image-placeholder.jpg');
 
     useEffect(() => {
         fetch(`http://localhost:8080/api/recipes/${id}`)
@@ -139,6 +144,9 @@ function DetailsRecipe() {
             })
             .then((data) => {
                 setRecipe(data);
+                if (data.base64Image) {
+                    setImgSrc(`data:image/jpeg;base64,${data.base64Image}`);
+                }
                 setLoading(false);
             })
             .catch((error) => {
@@ -189,10 +197,10 @@ function DetailsRecipe() {
             <Header />
             <div className='content DetailBackground'>
                 <div className='rd-img-container'>
-                    {/* //! Update the src attribute to use base64Image */}
                     <img
                         className='rd-img-inner'
-                        src={`data:image/jpeg;base64,${recipe.base64Image}`} //! Construct the src using base64Image
+                        src={imgSrc}
+                        onError={() => setImgSrc('/image-placeholder.jpg')}
                         alt={recipe.name}
                     />
                 </div>

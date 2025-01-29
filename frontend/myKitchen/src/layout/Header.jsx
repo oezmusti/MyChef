@@ -6,8 +6,8 @@ import '../css/base.css';
 function Header() {
     // State-Variable für das Menü, ob es geöffnet ist oder nicht
     const [isNavOpen, setIsNavOpen] = useState(false);
-    const [searchTerm, setSearchTerm] = useState(''); // State für das Suchfeld
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // State für den Login-Status
+    const [searchTerm, setSearchTerm] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate(); // Hook für Navigation
 
     // Funktion zum Öffnen und Schließen des Menüs
@@ -30,7 +30,7 @@ function Header() {
     const handleSearchSubmit = (e) => {
         e.preventDefault(); // Standardformular-Aktion verhindern
         if (searchTerm.trim()) {
-            navigate(`/serch/${searchTerm.trim()}`); // Benutzer zur Suchseite weiterleiten
+            navigate(`/serch/${searchTerm.trim()}`);
         }
     };
 
@@ -71,13 +71,6 @@ function Header() {
                         </div>
                     </div>
                     <div className="flex items-center gap-3 h-full">
-                        {/* <a href='/register' className='text-gold-500 '>
-                            Sign Up
-                        </a>
-                        <a href='/login' className="border border-spacing-2 border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-[#FFF] px-5 py-2 rounded-full">
-                            Login
-                        </a> */}
-
                         {isLoggedIn ? (
                             <button onClick={handleLogout} className="border border-spacing-2 border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-[#FFF] px-5 py-2 rounded-full">
                                 Logout
@@ -161,7 +154,6 @@ function Header() {
                         ) : (
                             <>
                                 <div>
-
                                 </div>
                             </>
                         )}

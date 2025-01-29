@@ -1,6 +1,5 @@
 package com.example.myRezept_Backend.util;
 
-import com.example.myRezept_Backend.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -15,19 +14,17 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
 
-    // @Value("${jwt.secret}")
-    // private String jwtSecret;
 
     @Value("${jwt.expiration}")
     private int jwtExpiration;
 
     private Key key;
 
-    @PostConstruct //!!! Methode wird nach der Initialisierung aufgerufen
+    @PostConstruct
     public void init() {
         this.key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-        //System.out.println("JWT Secret: " + jwtSecret); //!!! JWT Secret ausgeben
-        System.out.println("JWT Expiration: " + jwtExpiration); //!!! JWT Expiration ausgeben
+
+        System.out.println("JWT Expiration: " + jwtExpiration); // JWT Ablaufdatum
     }
 
     public String generateToken(String username) {
