@@ -31,14 +31,9 @@ function GlobalFeed() {
     }, []);
 
     useEffect(() => {
-        // Filterlogik anwenden
         const applyFilters = () => {
-            let filtered = recipes;
-
-            // Filter nach Publics (nur öffentliche Rezepte)
-            if (filters.publics) {
-                filtered = filtered.filter((recipe) => recipe.publics === true);
-            }
+            // Immer zuerst nur öffentliche Rezepte filtern
+            let filtered = recipes.filter((recipe) => recipe.publics === true);
 
             // Filter nach Kategorien
             if (filters.categories.length > 0) {
@@ -62,6 +57,7 @@ function GlobalFeed() {
 
         applyFilters();
     }, [filters, recipes]);
+
 
     const handleFilterChange = (newFilters) => {
         setFilters(newFilters);

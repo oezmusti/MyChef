@@ -307,17 +307,17 @@ function EditDetail() {
                             {renderStep()}
                             <div className="absolute bottom-4 right-4 flex gap-2">
                                 {currentStep > 1 && (
-                                    <button type="button" onClick={prevStep} className="btn-secondary">
+                                    <button type="button" onClick={prevStep} className="button text-[#FFF] bg-gold-200 font-medium rounded-lg text-sm px-3 py-2">
                                         Zurück
                                     </button>
                                 )}
                                 {currentStep < 4 && (
-                                    <button type="button" onClick={nextStep} className="btn-primary">
+                                    <button type="button" onClick={nextStep} className="button text-[#FFF] bg-gold-300 font-medium rounded-lg text-sm px-3 py-2">
                                         Weiter
                                     </button>
                                 )}
                                 {currentStep === 4 && (
-                                    <button type="submit" className="btn-primary">
+                                    <button type="submit" className="button text-[#FFF] bg-gold-300 font-medium rounded-lg text-sm px-3 py-2">
                                         Speichern
                                     </button>
                                 )}
