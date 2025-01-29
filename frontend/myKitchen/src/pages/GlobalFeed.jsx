@@ -86,7 +86,7 @@ function GlobalFeed() {
                                 <div key={recipe.id}>
                                     <RezepteKacheltext
                                         id={recipe.id}
-                                        img={recipe.imageUrl}
+                                        img={recipe.base64Image}
                                         name={recipe.name}
                                         publisher={recipe.publisher}
                                         time={recipe.time}

@@ -119,7 +119,7 @@ function Rezepte() {
                                 <div key={recipe.id}>
                                     <RezepteKacheltext
                                         id={recipe.id}
-                                        img={recipe.imageUrl}
+                                        img={recipe.base64Image}
                                         name={recipe.name}
                                         time={recipe.time}
                                         publisher={recipe.publisher}

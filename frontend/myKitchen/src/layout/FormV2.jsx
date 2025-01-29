@@ -5,6 +5,9 @@ import '../css/base.css';
 function FormV2() {
     //User bekommen 
     const [username, setUsername] = useState('');
+    const [imageBase64, setImageBase64] = useState(null);
+    const [recipeId, setRecipeId] = useState(null); 
+    
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -67,15 +70,32 @@ function FormV2() {
     const [imagePreview, setImagePreview] = useState(null);
 
     // Handle file input change
+    // const handleImageChange = (e) => {
+    //     const file = e.target.files[0];
+    //     if (file) {
+    //         const reader = new FileReader();
+    //         reader.onloadend = () => {
+    //             setImagePreview(reader.result);
+    //         };
+    //         reader.readAsDataURL(file);
+    //         setFormData({ ...formData, image: file });
+    //     }
+    // };
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
+            if (file.size > 5242880) { // 5MB limit
+                alert('Bild ist zu groß. Maximale Größe ist 5MB.');
+                return;
+            }
+            
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImagePreview(reader.result);
+                setImageBase64(reader.result.split(',')[1]); // Store only the base64 data, not the data:image prefix
             };
             reader.readAsDataURL(file);
-            setFormData({ ...formData, image: file });
+            setFormData({ ...formData, image: null }); // We don't need to store the file anymore
         }
     };
 
@@ -119,22 +139,22 @@ function FormV2() {
         e.preventDefault();
 
         // Erstellen eines FormData Objekts für das Bild
-        const formDataToSend = new FormData();
+        // const formDataToSend = new FormData();
 
-        // Bilddatei hinzufügen (falls vorhanden)
+        // // Bilddatei hinzufügen (falls vorhanden)
+        // // if (formData.image) {
+        // //     formDataToSend.append('image', formData.image);
+        // // }
         // if (formData.image) {
-        //     formDataToSend.append('image', formData.image);
+        //     const uniqueFilename = `${Date.now()}_${formData.image.name}`;
+        //     const uniqueFile = new File([formData.image], uniqueFilename, {
+        //         type: formData.image.type
+        //     });
+        //     formDataToSend.append('image', uniqueFile);
         // }
-        if (formData.image) {
-            const uniqueFilename = `${Date.now()}_${formData.image.name}`;
-            const uniqueFile = new File([formData.image], uniqueFilename, {
-                type: formData.image.type
-            });
-            formDataToSend.append('image', uniqueFile);
-        }
 
         // Restliche Formulardaten als JSON hinzufügen
-        formDataToSend.append('data', JSON.stringify({
+        const dataToSend = {
             name: formData.name,
             description: formData.description,
             lvl: formData.lvl,
@@ -146,9 +166,23 @@ function FormV2() {
             steps: formData.steps,
             quantity: formData.quantity,
             publisher: username,
-        }));
+            base64Image: imageBase64  // This comes from the state we set in handleImageChange
+        };
+        // formDataToSend.append('data', JSON.stringify({
+        //     name: formData.name,
+        //     description: formData.description,
+        //     lvl: formData.lvl,
+        //     mealtyp: formData.mealtyp,
+        //     time: formData.time,
+        //     categories: formData.categories,
+        //     publics: formData.publics,
+        //     ingredients: formData.ingredients,
+        //     steps: formData.steps,
+        //     quantity: formData.quantity,
+        //     publisher: username,
+        // }));
 
-        console.log('Gesendete Daten:' + formDataToSend)
+        // console.log('Gesendete Daten:' + formDataToSend)
 
         // POST-Request an den Backend-Server
         fetch('http://localhost:8080/api/recipes', {
@@ -156,7 +190,13 @@ function FormV2() {
             // headers: {
             //     'Content-Type': 'application/json', 
             // },
-            body: formDataToSend
+            //body: formDataToSend
+            headers: {
+                //!!! Add Content-Type header for JSON
+                'Content-Type': 'application/json',
+            },
+            //!!! Convert the object to JSON string
+            body: JSON.stringify(dataToSend)
         })
             .then(response => response.json())
             .then(data => {
@@ -218,6 +258,7 @@ function FormV2() {
                         </div>
                     </div>
                 );
+                
             case 2:
                 return (
                     <div className="relative h-full">

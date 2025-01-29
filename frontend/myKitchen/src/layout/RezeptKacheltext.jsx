@@ -85,7 +85,7 @@ function RezepteKacheltext({ id, img, name, publisher, description, time, lvl, m
             {/* Bild und Menü */}
             <div className="relative">
                 <Link to={`/detail/${id}`} >
-                    <img className="w-full object-cover h-52 rounded-tr-xl rounded-tl-xl" src={img} alt={name} />
+                    <img className="w-full object-cover h-52 rounded-tr-xl rounded-tl-xl" src={`data:image/jpeg;base64,${img}`} alt={name} />
                 </Link>
                 {publisher === username && (
                     <div className="absolute top-2 right-2">
